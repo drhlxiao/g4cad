@@ -1,0 +1,129 @@
+# material defined in yaml format
+# For syntax see: http://yaml.org/
+# data structure see the following examples
+#
+#
+---
+- name: PlasticScintillator
+  data:
+    compositions:
+    - frac: 10
+      ref: H
+    - frac: 9
+      ref: C
+    unit: g/cm3
+    density: 1.023
+- name: HPM1801
+  data:
+    compositions:
+    - frac: 0.95
+      ref: W
+    - frac: 0.025
+      ref: Ni
+    - frac: 0.025
+      ref: Cu
+    unit: g/cm3
+    density: 18
+- name: PCB_FR4
+  data:
+    compositions:
+    - frac: 0.207540625755438
+      ref: Si
+    - frac: 0.378441287241465
+      ref: O
+    - frac: 0.0480272385520466
+      ref: Ca
+    - frac: 0.0658769762612228
+      ref: Na
+    - frac: 0.0251707837010018
+      ref: H
+    - frac: 0.274943088488826
+      ref: C
+    unit: g/cm3
+    density: 1.8
+- name: Al2O3
+  data:
+    compositions:
+    - frac: 2
+      ref: Al
+    - frac: 3
+      ref: O
+    unit: g/cm3
+    density: 2.3
+- name: Ti6Al4V
+  data:
+    compositions:
+    - frac: 0.04
+      ref: V
+    - frac: 0.9
+      ref: Ti
+    - frac: 0.06
+      ref: Al
+    unit: g/cm3
+    density: 4.43
+- name: F2G12
+  data:
+    compositions:
+    - frac: 0.213
+      ref: Si
+    - frac: 0.417
+      ref: Pb
+    - frac: 0.024
+      ref: K
+    - frac: 0.022
+      ref: Na
+    - frac: 0.289
+      ref: O
+    - frac: 0.035
+      ref: Ce
+    unit: g/cm3
+    density: 3.6
+- name: Alu5A06
+  data:
+    compositions:
+    - frac: 0.004
+      ref: Si
+    - frac: 0.004
+      ref: Fe
+    - frac: 0.001
+      ref: Cu
+    - frac: 0.007
+      ref: Mn
+    - frac: 0.063
+      ref: Mg
+    - frac: 0.925
+      ref: Al
+    unit: g/cm3
+    density: 2.63
+- name: PMMA
+  data:
+    compositions:
+    - frac: 5
+      ref: C
+    - frac: 2
+      ref: O
+    - frac: 8
+      ref: H
+    unit: g/cm3
+    density: 1.18
+- name: BGO
+  data:
+    compositions:
+    - frac: 4
+      ref: Bi
+    - frac: 3
+      ref: Ge
+    - frac: 12
+      ref: O
+    unit: g/cm3
+    density: 7.13
+- name: CsI
+  data:
+    compositions:
+    - frac: 1
+      ref: Cs
+    - frac: 1
+      ref: I
+    unit: g/cm3
+    density: 4.51
+

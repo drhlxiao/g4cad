@@ -1,0 +1,761 @@
+[
+	{
+		"name": "PlasticScintillator",
+		"data": {
+			"compositions": [
+				{
+					"frac": 10,
+					"ref": "H"
+				},
+				{
+					"frac": 9,
+					"ref": "C"
+				}
+			],
+			"unit": "g/cm3",
+			"density": 1.023
+		}
+	},
+	{
+		"name": "HPM1801",
+		"data": {
+			"compositions": [
+				{
+					"frac": 0.95,
+					"ref": "W"
+				},
+				{
+					"frac": 0.025,
+					"ref": "Ni"
+				},
+				{
+					"frac": 0.025,
+					"ref": "Cu"
+				}
+			],
+			"unit": "g/cm3",
+			"density": 18
+		}
+	},
+	{
+		"name": "PCB_FR4",
+		"data": {
+			"compositions": [
+				{
+					"frac": 0.207540625755438,
+					"ref": "Si"
+				},
+				{
+					"frac": 0.378441287241465,
+					"ref": "O"
+				},
+				{
+					"frac": 0.0480272385520466,
+					"ref": "Ca"
+				},
+				{
+					"frac": 0.0658769762612228,
+					"ref": "Na"
+				},
+				{
+					"frac": 0.0251707837010018,
+					"ref": "H"
+				},
+				{
+					"frac": 0.274943088488826,
+					"ref": "C"
+				}
+			],
+			"unit": "g/cm3",
+			"density": 1.8
+		}
+	},
+	{
+		"name": "Al2O3",
+		"data": {
+			"compositions": [
+				{
+					"frac": 2,
+					"ref": "Al"
+				},
+				{
+					"frac": 3,
+					"ref": "O"
+				}
+			],
+			"unit": "g/cm3",
+			"density": 2.3
+		}
+	},
+	{
+		"name": "Ti6Al4V",
+		"data": {
+			"compositions": [
+				{
+					"frac": 0.04,
+					"ref": "V"
+				},
+				{
+					"frac": 0.9,
+					"ref": "Ti"
+				},
+				{
+					"frac": 0.06,
+					"ref": "Al"
+				}
+			],
+			"unit": "g/cm3",
+			"density": 4.43
+		}
+	},
+	{
+		"name": "F2G12",
+		"data": {
+			"compositions": [
+				{
+					"frac": 0.213,
+					"ref": "Si"
+				},
+				{
+					"frac": 0.417,
+					"ref": "Pb"
+				},
+				{
+					"frac": 0.024,
+					"ref": "K"
+				},
+				{
+					"frac": 0.022,
+					"ref": "Na"
+				},
+				{
+					"frac": 0.289,
+					"ref": "O"
+				},
+				{
+					"frac": 0.035,
+					"ref": "Ce"
+				}
+			],
+			"unit": "g/cm3",
+			"density": 3.6
+		}
+	},
+	{
+		"name": "Alu5A06",
+		"data": {
+			"compositions": [
+				{
+					"frac": 0.004,
+					"ref": "Si"
+				},
+				{
+					"frac": 0.004,
+					"ref": "Fe"
+				},
+				{
+					"frac": 0.001,
+					"ref": "Cu"
+				},
+				{
+					"frac": 0.007,
+					"ref": "Mn"
+				},
+				{
+					"frac": 0.063,
+					"ref": "Mg"
+				},
+				{
+					"frac": 0.925,
+					"ref": "Al"
+				}
+			],
+			"unit": "g/cm3",
+			"density": 2.63
+		}
+	},
+	{
+		"name": "PMMA",
+		"data": {
+			"compositions": [
+				{
+					"frac": 5,
+					"ref": "C"
+				},
+				{
+					"frac": 2,
+					"ref": "O"
+				},
+				{
+					"frac": 8,
+					"ref": "H"
+				}
+			],
+			"unit": "g/cm3",
+			"density": 1.18
+		}
+	},
+	{
+		"name": "BGO",
+		"data": {
+			"compositions": [
+				{
+					"frac": 4,
+					"ref": "Bi"
+				},
+				{
+					"frac": 3,
+					"ref": "Ge"
+				},
+				{
+					"frac": 12,
+					"ref": "O"
+				}
+			],
+			"unit": "g/cm3",
+			"density": 7.13
+		}
+	},
+	{
+		"name": "CsI",
+		"data": {
+			"compositions": [
+				{
+					"frac": 1,
+					"ref": "Cs"
+				},
+				{
+					"frac": 1,
+					"ref": "I"
+				}
+			],
+			"unit": "g/cm3",
+			"density": 4.51
+		}
+	},
+	{
+		"name": "CdTe",
+		"data": {
+			"compositions": [
+				{
+					"frac": 1,
+					"ref": "Cd"
+				},
+				{
+					"frac": 1,
+					"ref": "Te"
+				}
+			],
+			"unit": "g/cm3",
+			"density": 5.85
+		}
+	},
+	{
+		"name": "SiC",
+		"data": {
+			"compositions": [
+				{
+					"frac": 1,
+					"ref": "Si"
+				},
+				{
+					"frac": 1,
+					"ref": "C"
+				}
+			],
+			"unit": "g/cm3",
+			"density": 3.16
+		}
+	},
+	{
+		"name": "al",
+		"data": {
+			"density": 2.7,
+			"units": "g/cm3",
+			"compositions": [
+				{
+					"frac": 1,
+					"ref": "Al"
+				}
+			]
+		}
+	},
+	{
+		"name": "be",
+		"data": {
+			"density": 1.85,
+			"units": "g/cm3",
+			"compositions": [
+				{
+					"frac": 1,
+					"ref": "Be"
+				}
+			]
+		}
+	},
+	{
+		"name": "dem_entrance_equivalent",
+		"remark":"real-thickness is 6mil, in cad is 0.075mm, density normalized",
+		"data": {
+			"density": 2.905,
+			"units": "g/cm3",
+			"compositions": [
+				{"frac": 0.026361934679419604, "ref": "H"},
+				{"frac": 0.6911312874892387, "ref": "C"},
+				{"frac": 0.07326981844932381, "ref": "N"},
+				{"frac": 0.2092344815510341, "ref": "O"},
+				{"frac": 2.4778309838448185e-06, "ref": "Al"}
+			]
+		}
+	},
+	{
+		"name": "kapton",
+		"data": {
+			"density": 1.43,
+			"units": "g/cm3",
+			"compositions": [
+				{
+					"frac": 0.026362,
+					"ref": "H"
+				},
+				{
+					"frac": 0.691133,
+					"ref": "C"
+				},
+				{
+					"frac": 0.07327,
+					"ref": "N"
+				},
+				{
+					"frac": 0.209235,
+					"ref": "O"
+				}
+			]
+		}
+	},
+	{
+		"name": "mylar",
+		"data": {
+			"density": 1.38,
+			"units": "g/cm3",
+			"compositions": [
+				{
+					"frac": 0.041959,
+					"ref": "H"
+				},
+				{
+					"frac": 0.625017,
+					"ref": "C"
+				},
+				{
+					"frac": 0.333025,
+					"ref": "O"
+				}
+			]
+		}
+	},
+	{
+		"name": "pet",
+		"data": {
+			"density": 1.37,
+			"units": "g/cm3",
+			"compositions": [
+				{
+					"frac": 0.04196,
+					"ref": "H"
+				},
+				{
+					"frac": 0.625016,
+					"ref": "C"
+				},
+				{
+					"frac": 0.333024,
+					"ref": "O"
+				}
+			]
+		}
+	},
+	{
+		"name": "solarblack_oxygen",
+		"data": {
+			"density": 3.2,
+			"units": "g/cm3",
+			"compositions": [
+				{
+					"frac": 0.002,
+					"ref": "H"
+				},
+				{
+					"frac": 0.415,
+					"ref": "O"
+				},
+				{
+					"frac": 0.396,
+					"ref": "Ca"
+				},
+				{
+					"frac": 0.187,
+					"ref": "P"
+				}
+			]
+		}
+	},
+
+	{
+		"name": "stix_solarblack_carbon",
+		"data": {
+			"density": 3.2,
+			"units": "g/cm3",
+			"compositions": [
+				{
+					"frac": 0.301,
+					"ref": "C"
+				},
+				{
+					"frac": 0.503,
+					"ref": "Ca"
+				},
+				{
+					"frac": 0.195,
+					"ref": "P"
+				}
+			]
+		}
+	},
+	{
+		"name": "stix_te_o2",
+		"data": {
+			"density": 5.67,
+			"units": "g/cm3",
+			"compositions": [
+				{
+					"frac": 0.7995088158691722,
+					"ref": "Te"
+				},
+				{
+					"frac": 0.20049124678825841,
+					"ref": "O"
+				}
+			]
+		}
+	},
+	{
+		"name": "stix_mli_equivalent",
+		"remarks": "mli thickness in the cad drawing is 2 mm but it should be 0.3886, density normalized",
+		"data": {
+			"density": 0.2741,
+			"units": "g/cm3",
+			"compositions": [
+				{"ref": "Al", "frac": 0.02067901572261672}, {"ref": "H", "frac": 0.03489320168058033}, {"ref": "C", "frac": 0.638367101721063}, {"ref": "N", "frac": 0.02911816514765254}, {"ref": "O", "frac": 0.2769428353228224}			]
+		}
+	},
+	{
+		"name": "frontwindow_be_with_solar_black",
+		"data": {
+			"compositions": [
+				{"frac": 0.00877056277056277, "ref": "C"},
+				{"frac": 0.0021774891774891773, "ref": "Ca"},
+				{"frac": 0.0008441558441558443, "ref": "P"},
+				{"frac": 0.9807359307359307, "ref": "Be"},
+				{"frac": 0.005525974025974026, "ref": "O"},
+				{"frac": 0.0004978354978354978, "ref": "Al"},
+				{"frac": 0.0007467532467532468, "ref": "Fe"},
+				{"frac": 0.0003982683982683983, "ref": "Mg"},
+				{"frac": 0.0002987012987012987, "ref": "Si"}
+			],
+			"density": 1.84339,
+			"units": "g/cm3"
+		}
+	},
+	{
+		"name": "rear_window",
+		"data": {
+			"compositions": [
+				{"frac": 0.985, "ref": "Be"},
+				{"frac": 0.00555, "ref": "O"},
+				{"frac": 0.0005, "ref": "Al"},
+				{"frac": 0.0075, "ref": "C"},
+				{"frac": 0.00075, "ref": "Fe"},
+				{"frac": 0.0004, "ref": "Mg"},
+				{"frac": 0.0003, "ref": "Si"}
+			],
+			"density": 1.84,
+			"units": "g/cm3"
+		}
+	},
+	{
+		"name": "grid_covers",
+		"data": {
+			"compositions": [
+				{
+					"frac": 0.026362,
+					"ref": "H"
+				},
+				{
+					"frac": 0.691133,
+					"ref": "C"
+				},
+				{
+					"frac": 0.07327,
+					"ref": "N"
+				},
+				{
+					"frac": 0.209235,
+					"ref": "O"
+				}
+			],
+			"density": 1.4300000000000002,
+			"units": "g/cm3"
+		}
+	},
+	{
+		"name": "dem",
+		"data": {
+			"compositions": [
+				{
+					"frac": 0.026362,
+					"ref": "H"
+				},
+				{
+					"frac": 0.691133,
+					"ref": "C"
+				},
+				{
+					"frac": 0.07326999999999999,
+					"ref": "N"
+				},
+				{
+					"frac": 0.209235,
+					"ref": "O"
+				}
+			],
+			"density": 1.43,
+			"units": "g/cm3"
+		}
+	},
+	{
+		"name": "attenuator",
+		"data": {
+			"compositions": [
+				{
+					"frac": 1,
+					"ref": "Al"
+				}
+			],
+			"density": 2.7,
+			"units": "g/cm3"
+		}
+	},
+	{
+		"name": "mli",
+		"data": {
+			"compositions": [
+				{
+					"frac": 0.020679015722616715,
+					"ref": "Al"
+				},
+				{
+					"frac": 0.03489320168058031,
+					"ref": "H"
+				},
+				{
+					"frac": 0.6383671017210629,
+					"ref": "C"
+				},
+				{
+					"frac": 0.029118165147652537,
+					"ref": "N"
+				},
+				{
+					"frac": 0.2769428353228224,
+					"ref": "O"
+				}
+			],
+			"density": 1.411173443129182,
+			"units": "g/cm3"
+		}
+	},
+	{
+		"name": "calibration_foil",
+		"data": {
+			"compositions": [
+				{"ref":"Al",
+					"frac":3.7e-6},
+					{"ref":"H","frac": 0.02636},
+					{"ref":"C","frac": 0.69113},
+					{"ref":"N","frac": 0.07327}, 
+					{"ref":"O","frac": 0.20923}],
+					"density": 1.43,
+					"units": "g/cm3"
+		}
+	},
+	{
+		"name": "calibration_foil_equivalent",
+		"data": {
+			"compositions": [
+				{"ref":"Al",
+					"frac":3.7e-6},
+					{"ref":"H","frac": 0.02636},
+					{"ref":"C","frac": 0.69113},
+					{"ref":"N","frac": 0.07327}, 
+					{"ref":"O","frac": 0.20923}],
+					"density": 3.41,
+					"units": "g/cm3"
+		}
+	},
+	{
+		"name": "dead_layer",
+		"data": {
+			"compositions": [
+				{
+					"frac": 0.7995088158691722,
+					"ref": "Te"
+				},
+				{
+					"frac": 0.20049124678825841,
+					"ref": "O"
+				}
+			],
+			"density": 5.67,
+			"units": "g/cm3"
+		}
+	},
+	{
+		"name": "mtm2049_epoxy",
+		"data": {
+			"compositions": [
+				{
+					"frac": 0.85,
+					"ref": "C"
+				},{
+				"frac": 0.03,
+				"ref": "H"
+				},
+				{
+					"frac": 0.04,
+					"ref": "N"
+				},
+				{
+					"frac": 0.08,
+					"ref": "O"
+				}
+			],
+			"density": 1.23,
+			"units": "g/cm3"
+		}
+	},
+	{
+		"name": "carbon_fiber",
+		"data": {
+			"compositions": [
+				{
+					"frac": 0.85,
+					"ref": "C"
+				},{
+				"frac": 0.03,
+				"ref": "H"
+				},
+				{
+					"frac": 0.04,
+					"ref": "N"
+				},
+				{
+					"frac": 0.08,
+					"ref": "O"
+				}
+			],
+			"density": 1.55,
+			"units": "g/cm3"
+		}
+	},
+
+	{
+		"name": "AlBeMet",
+		"data": {
+			"compositions": [
+				{
+					"frac": 0.38,
+					"ref": "Al"
+				},
+				{
+					"frac": 0.62,
+					"ref": "Be"
+				}
+			],
+			"density": 2.07,
+			"units": "g/cm3"
+		}
+	},{
+	"name": "PEEK",
+	"data": {
+		"compositions": [
+			{
+				"frac": 19,
+				"ref": "C"
+			},{
+			"frac": 14,
+			"ref": "H"
+			},
+			{
+				"frac": 2,
+				"ref": "F"
+			},
+			{
+				"frac": 3,
+				"ref": "O"
+			}
+		],
+		"density": 1.32,
+		"units": "g/cm3"
+	}
+	},
+	{
+		"name": "alum7075",
+		"data": {
+			"compositions": [
+				{"frac": 0.002, "ref": "Si"},
+				{"frac": 0.0025, "ref": "Fe"},
+				{"frac": 0.016, "ref": "Cu"},
+				{"frac": 0.0015, "ref": "Mn"},
+				{"frac": 0.025, "ref": "Mg"},
+				{"frac": 0.0023, "ref": "Cr"},
+				{"frac": 0.00025, "ref": "Ni"},
+				{"frac": 0.056, "ref": "Zn"},
+				{"frac": 0.001, "ref": "Ti"},
+				{"frac": 0.89345, "ref": "Al"}
+			],
+			"density": 2.80,
+			"units": "g/cm3"
+		}
+	},
+	{
+		"name": "berllium-s200fh",
+		"data": {
+			"compositions": [
+				{"frac": 0.0005, "ref": "Al"},
+				{"frac": 0.99338, "ref": "Be"},
+				{"frac": 0.00477, "ref": "O"},
+				{"frac": 0.00065, "ref": "Fe"},
+				{"frac": 0.0004, "ref": "Mg"},
+				{"frac": 0.0003, "ref": "Si"}
+			],
+			"density": 1.84,
+			"units": "g/cm3"
+		},
+		"comments": "x-ray window material"
+	},
+		{
+		"name": "Al6061",
+		"data": {
+			"compositions": [
+				{"frac":  0.97, "ref": "Al"},
+				{"frac": 0.01, "ref": "Mg"},
+				{"frac": 0.005, "ref": "Si"},
+				{"frac": 0.005, "ref": "Fe"}
+			],
+			"density": 2.7,
+			"units": "g/cm3"
+		},
+		"comments":"most used for spacecraft structures and surface, data from wikipedia"
+	}
+]

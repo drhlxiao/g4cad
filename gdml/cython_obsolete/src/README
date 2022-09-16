@@ -1,0 +1,28 @@
+Version 4 features:
+
+* database implemented
+* database GUI
+* add sphere, box, with GDML workbench
+* find small conponets
+* create a database if there is no database
+
+version 5 feature
+
+Replace the sqlite3 library with pyside sql
+
+
+20171201
+
+add a command to set sensitive volumes
+
+
+20171206
+
+correctted a bug on exporting CGS models
+-position and rotation definitions moved to world.gdml
+
+20180716
+Change Class names and filenames
+
+20180717
+Change sqlite database to json
