@@ -12,6 +12,6 @@ G4cad is a workbench for FreeCAD, which is a general-purpose parametric 3D compu
 * providing various tools for converting cad models to gdml files, like  measuring tools, tool to remove small parts
 
 ### Installation
-![g4cad workbench](./tests/g4cad.png | width = 400)
-![converted model in g4](./tests/model_in_g4.png  | width = 400)
+![g4cad workbench](./tests/g4cad.png)
+![converted model in g4](./tests/model_in_g4.png  )
 
