@@ -25,16 +25,17 @@ We also developed a web version, which can be found at the link http://polar.psi
 3) find the folder g4cad in unzipped folder, copy it to FreeCAD workbench directory (~/.FreeCAD/Mod on Linux. On windows, You can also find folder "Mod" under the installation directory)
 
 
-### Typical Workflow
 
-1) Open the step file to be converted 
-2) click the icon "add world volume" in the toolbar to add a world volume 
-3) Select a solid, set material
-4) If the material you want is not in the list, open the user_materials.json with a text editor, add the information of the material
-5) Select the solids to be exported
-6) click the icon "Export solids to gdml files" to generate gdml files
-7) If everything goes well, the gdml files are written to gdml/ in the specified folder and a log file can also be found in the folder.  
-8) Reading gdml files in Geant4
+### Typical Workflow
+1)Activate the workbench "g4cad" in FreeCAD
+2) Open the step file to be converted 
+3) click the icon "add world volume" in the toolbar to add a world volume 
+4) Select a solid, set material
+5) If the material you want is not in the list, open the user_materials.json with a text editor, add the information of the material
+6) Select the solids to be exported
+7) click the icon "Export solids to gdml files" to generate gdml files
+8) If everything goes well, the gdml files are written to gdml/ in the specified folder and a log file can also be found in the folder.  
+9) Reading gdml files in Geant4
 
 Here is a code snippet 
 ```cpp
