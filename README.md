@@ -22,12 +22,12 @@ We also developed a web version, which can be found at the link http://polar.psi
 ### Installation
 1) Download g4cad https://github.com/drhlxiao/g4cad/archive/refs/heads/main.zip
 2) Unzip the downloaded zip file
-3) find the folder g4cad in unzipped folder, copy it to FreeCAD workbench directory (~/.FreeCAD/Mod on Linux. On windows, You can also find folder "Mod" under the installation directory)
+3) find the folder g4cad in unzipped folder, copy it to FreeCAD workbench directory (~/.FreeCAD/Mod on Linux, and <FREECAD_INSTALLATION_PATH>/Mod on windows)
 
 
 
 ### Typical Workflow
-1) Activate the workbench "g4cad" in FreeCAD
+1) Activate the workbench "g4cad" in FreeCAD (view->Workbench->g4cad)
 2) Open the step file to be converted 
 3) click the icon "add world volume" in the toolbar to add a world volume 
 4) Select a solid, set material
