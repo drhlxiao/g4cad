@@ -8,9 +8,8 @@ from PySide.QtGui import *
 
 from material_database import MaterialDatabase
 import os.path
-from utils import printf
 
-#import MaterialDatabase
+
 
 
 class MainWidget(QDialog):
@@ -55,7 +54,7 @@ class MainWidget(QDialog):
         try:
             self.db.edit()
         except BaseException:
-            printf("failed to open the material database file")
+            print("failed to open the material database file")
             pass
 
     def setDatabase(self):
