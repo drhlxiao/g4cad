@@ -11,7 +11,7 @@ G4cad is a workbench for FreeCAD, which is a general-purpose parametric 3D compu
 * Convert models to gdml files
 * providing various tools for converting cad models to gdml files, like  measuring tools, tool to remove small parts
 ### Requirements
-1) tested with FreeCAD 0.19, should also work with FreeCAD v0.16, v0.17 and v0.18
+1) tested with FreeCAD 0.19, should also work with  v0.16, v0.17 and v0.18
 2) tested on both Ubuntu and Windows
 
 
