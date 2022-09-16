@@ -4,7 +4,6 @@
 Created on Wed Jul 18 18:09:41 2018
 
 @author: Hualin Xiao
-
 """
 
 import FreeCAD

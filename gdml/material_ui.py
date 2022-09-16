@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Aug 1 11:12:45 2017
-
 @author: Hualin Xiao (hualin.xiao@psi.ch)
-
 Material database interface
 """
 

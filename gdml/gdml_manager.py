@@ -4,9 +4,6 @@ Created on May 16 11:12:45 2017
 @author: Hualin Xiao
 @email:  hualin.xiao@psi.ch
 
-The code partially taken from http://lcgapp.cern.ch/project/simu/framework/GDML/GDML2/pygdml.html
-
-
 """
 
 import math
@@ -50,7 +47,6 @@ class GdmlManager(object):
             }, [self.define, self.materials, self.solids, self.structure]
         ]
         self.list_float_elem = ["x", "y", "z", "rmin", "rmax"]
-        # self.list_float_elem=[""]
 
         self.addDefaultValues()
 
@@ -64,9 +60,9 @@ class GdmlManager(object):
 
     def processMaterial(self, mat):
         if mat in g4_materials.materials:
-            self.printf('Geant4 default material: ' + mat)
+            self.freecadPrint('Geant4 default material: ' + mat)
         else:
-            self.printf('Loading material' + mat +
+            self.freecadPrint('Loading material' + mat +
                         ' information from database')
             self.addDatabaseMaterial(mat)
 
@@ -298,7 +294,7 @@ class GdmlManager(object):
             return
         iso = self.db.getMaterial(mat_name)
         if not iso:
-            self.printf("No information for the material: " + mat_name)
+            self.freecadPrint("No information for the material: " + mat_name)
             return
         name, frac_type, element_ref, fraction, Z, density = iso[0]
         if len(iso) == 1:
@@ -869,7 +865,7 @@ class GdmlManager(object):
                 gdml_file.write('/>\n')
 
         gdml_file.write('<?xml version="1.0" encoding="UTF-8" ?>\n')
-        creator_info = '''<!--  Created by FreeCAD gdml converter (http://polar.psi.ch/cadmc) at %s-->\n''' % time.strftime(
+        creator_info = '''<!--  Created by Freecad G4GeoCreator (https://github.com/drhlxiao/freecad-geant4-gdml-workbench/) at  %s.-->\n    ''' % time.strftime(
             '%c')
         gdml_file.write(creator_info)
         writeElement(self.document, '')
@@ -1245,57 +1241,7 @@ class GdmlManager(object):
             return density
         return None
 
-    def printf(self, msg):
+    def freecadPrint(self, msg):
         FreeCAD.Console.PrintMessage(msg + '\n')
 
 
-"""
-    def computeRotationDefineByAxis(self, xaxis, yaxis, zaxis):
-        #define z angle
-        #--------------
-        r = math.sqrt(xaxis[0] * xaxis[0] + yaxis[0] * yaxis[0])
-        if (r > 1.e-6):
-            cos_z = xaxis[0] / r
-            sin_z = -yaxis[0] / r
-            angle_z = math.atan2(sin_z, cos_z)
-            if (angle_z < 1e-6 and angle_z > -1e-6):
-                angle_z = 0.
-            y_1 = [
-                0., cos_z * yaxis[1] + sin_z * xaxis[1],
-                cos_z * yaxis[2] + sin_z * xaxis[2]
-            ]
-            x_1 = [
-                cos_z * xaxis[0] - sin_z * yaxis[0],
-                cos_z * xaxis[1] - sin_z * yaxis[1],
-                cos_z * xaxis[2] - sin_z * yaxis[2]
-            ]
-            z_1 = zaxis
-
-            cos_x = y_1[1]
-            sin_x = y_1[2]
-            #print sin_x,cos_x
-            angle_x = math.atan2(sin_x, cos_x)
-            if (angle_x < 1e-6 and angle_x > -1e-6):
-                angle_x = 0.
-
-            z_2 = [0., -sin_x, cos_x]
-            cos_y = x_1[0]
-            sin_y = -(z_2[1] * x_1[1] + z_2[2] * x_1[2])
-            angle_y = math.atan2(sin_y, cos_y)
-            if (angle_y < 1e-6 and angle_y > -1e-6):
-                angle_y = 0.
-
-        else:
-            angle_x = 0.
-            angle_y = 90.
-            angle_z = math.acos(yaxis[1])
-            if (yaxis[2] < 0):
-                angle_z = -angle_z
-
-        return [-angle_x, -angle_y, -angle_z]
-
-"""
-
-# def export(exportList,output_filename):
-#    ex=GdmlExporter()
-#    ex.export(exportList,output_filename,False)

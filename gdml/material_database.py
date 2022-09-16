@@ -8,11 +8,10 @@ Created on Fri Dec  1 11:12:45 2017
 import os
 import sys
 import shutil
-from utils import printf, getCurrentPath
-import elements
 import json
 import webbrowser
 import subprocess
+import elements
 
 
 class MaterialDatabase(object):
@@ -33,7 +32,7 @@ class MaterialDatabase(object):
             webbrowser.open(self._databaseFilename)
 
     def loadDatabase(self):
-        current_path = getCurrentPath()
+        current_path=os.path.dirname(os.path.realpath(__file__))
         dirs = [
             current_path,
             os.path.expanduser("~") + '/.FreeCAD', '{}/db'.format(current_path)
@@ -44,7 +43,6 @@ class MaterialDatabase(object):
                 self._data = json.load(f)
                 if self._data:
                     self._databaseFilename = filename
-                    #printf("user database found :{}".format(filename))
                     return
 
     @property
@@ -56,7 +54,6 @@ class MaterialDatabase(object):
             matlist = [e['name'] for e in self._data]
             return matlist
         except BaseException:
-            #printf("No user materials")
             return []
 
     def getMaterial(self, name):

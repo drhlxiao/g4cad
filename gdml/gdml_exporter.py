@@ -5,7 +5,7 @@ Created on May 16 11:12:45 2017
 @email:  hualin.xiao@psi.ch
 
 
-FreeCAD GDML workbench
+FreeCAD g4cad workbench
 
 To do list:
        optimize the geometry:
@@ -13,9 +13,6 @@ To do list:
       * merge parts with the same material to reduce overlaps
       * FreeCAD plugin
       * editing models with freecad
-
-
-
 """
 
 import sys
@@ -23,14 +20,14 @@ import FreeCAD
 import FreeCADGui
 import os
 import ImportGui
-from gdml_manager import *
-from utils import get_valid_filename
 import re
 import label_manager
 import gdml_sheet
-import utils
 
 
+def get_valid_filename(s):
+    s = str(s).strip().replace(' ', '_')
+    return re.sub(r'(?u)[^-\w.]', '', s)
 
 
 
@@ -103,7 +100,7 @@ class GdmlExporter:
 
     def meshShape(self, ob, gd, solid_name):
         pcs = self.getPrecision(ob)
-        # self.printf('%s precision:%f\n'%(ob.Label,pcs))
+        # self.freecadPrint('%s precision:%f\n'%(ob.Label,pcs))
         mesh = ob.Shape.tessellate(pcs)
         self.meshing(mesh, gd, solid_name)
 
@@ -148,21 +145,21 @@ class GdmlExporter:
         is_CSG = True
 
         if ob.TypeId == "Part::Sphere":
-            self.printf("Sphere Radius : " + str(ob.Radius))
+            self.freecadPrint("Sphere Radius : " + str(ob.Radius))
             rmax = ob.Radius
             # csg.write("sphere($fn = 0, "+fafs+", r = "+str(ob.Radius)+");\n")
             gd.addSphere(solid_name, 0, rmax, 0, 360, 0, 180, "mm", "deg")
             displacement, rot = self.checkPlacement(ob, 0, 0, 0)
 
         elif ob.TypeId == "Part::Box":
-            self.printf("cube : (" + str(ob.Length) + "," + str(ob.Width) +
+            self.freecadPrint("cube : (" + str(ob.Length) + "," + str(ob.Width) +
                         "," + str(ob.Height) + ")")
             displacement, rot = self.checkPlacement(
                 ob, -ob.Length / 2, -ob.Width / 2, -ob.Height / 2)
             gd.addBox(solid_name, ob.Length, ob.Width, ob.Height, "mm")
 
         elif ob.TypeId == "Part::Cylinder":
-            self.printf("cylinder : Height " + str(ob.Height) + " Radius " +
+            self.freecadPrint("cylinder : Height " + str(ob.Height) + " Radius " +
                         str(ob.Radius))
             displacement, rot = self.checkPlacement(ob, 0, 0, -ob.Height / 2)
             gd.addTube(solid_name, 0, ob.Radius, ob.Height, 0, 360, "mm",
@@ -171,46 +168,21 @@ class GdmlExporter:
             # deltaphi,lunit="cm",aunit="deg"):
 
         elif ob.TypeId == "Part::Cone":
-            self.printf("cone : Height " + str(ob.Height) + " Radius1 " +
+            self.freecadPrint("cone : Height " + str(ob.Height) + " Radius1 " +
                         str(ob.Radius1) + " Radius2 " + str(ob.Radius2))
             displacement, rot = self.checkPlacement(ob, 0, 0, -ob.Height / 2)
             gd.addCone(solid_name, ob.Height, 0, 0, ob.Radius1, ob.Radius2, 0,
                        360, "mm", "deg")
 
         elif ob.TypeId == "Part::Torus":
-            self.printf("Torus")
+            self.freecadPrint("Torus")
             if ob.Angle3 == 360.00:
                 displacement, rot = self.checkPlacement(ob, 0, 0, 0)
                 gd.addTorus(solid_name, ob.Radius1, 0, ob.Radius2, 0, 360)
             else:  # Cannot convert to rotate extrude so best effort is polyhedron
                 self.meshShape(ob, gd, solid_name)
-        # the following lines of still needs to be debuged
-            commented = '''
-        elif ob.TypeId == "Part::Cut" :
-            print "Cut"
-            sol0,vol0,phy0=self.processObject(gd,ob.Base,True)
-            sol1,vol1,phy1=self.processObject(gd,ob.Tool,True)
-            relative_pos=[0,0,0]
-            relative_rot=[0,0,0]
-            gd.subtraction(solid_name,sol0, sol1,relative_pos, relative_rot)
-
-        elif ob.TypeId == "Part::Fuse" :
-            print "union"
-            sol0,vol0,phy0=self.processObject(gd,ob.Base,True)
-            sol1,vol1,phy1=self.processObject(gd,ob.Tool,True)
-            relative_pos=[0,0,0]
-            relative_rot=[0,0,0]
-            gd.union(solid_name,sol0, sol1,relative_pos, relative_rot)
-
-        elif ob.TypeId == "Part::Common" :
-            sol0,vol0,phy0=self.processObject(gd,ob.Base,True)
-            sol1,vol1,phy1=self.processObject(gd,ob.Tool,True)
-            relative_pos=[0,0,0]
-            relative_rot=[0,0,0]
-            gd.intersection(solid_name,sol0, sol1,relative_pos, relative_rot)
-            '''
         elif ob.isDerivedFrom('Part::Feature'):
-            self.printf("Part::Feature")
+            self.freecadPrint("Part::Feature")
             displacement, rot = self.checkPlacement(ob, 0, 0, 0)
             is_CSG = False
             self.meshShape(ob, gd, solid_name)
@@ -267,17 +239,18 @@ class GdmlExporter:
         if not multi_files:
             logdir = os.path.dirname(output)
         self.initLog(logdir)
-        self.printf('Writing gdml...\n')
+        self.freecadPrint('Writing gdml...\n')
 
         if multi_files:
             odir = os.path.normpath(output) + '/gdml'
-            utils.mkdir(odir)
+            if not os.path.exists(odir):
+                os.makedirs(odir)
             file_list, phys_name_list, pos_list, rot_list = self.exportSubShapes(
                 exportlist, odir)
             self.mergeGDML(file_list, phys_name_list, pos_list, rot_list, odir)
         else:
             self.exportToSingleFile(exportlist, output)
-        self.printf('done!\n')
+        self.freecadPrint('done!\n')
 
     def checkWorld(self, gd):
         for i in FreeCAD.ActiveDocument.Objects:
@@ -286,9 +259,9 @@ class GdmlExporter:
                 x = i.Length
                 y = i.Width
                 z = i.Height
-                self.printf("creating world...")
-                self.printf("size:(%f,%f,%f)" % (x, y, z))
-                self.printf("material:" + mat)
+                self.freecadPrint("creating world...")
+                self.freecadPrint("size:(%f,%f,%f)" % (x, y, z))
+                self.freecadPrint("material:" + mat)
                 gd.createWorldVolume(x, y, z, mat)
 
     def initLog(self, odir):
@@ -299,7 +272,7 @@ class GdmlExporter:
         gdml = GdmlWriter()
         self.checkWorld(gdml)
         world_volume_name = gdml.createWorldVolume()
-        self.printf("world:" + world_volume_name)
+        self.freecadPrint("world:" + world_volume_name)
         sheet = gdml_sheet.GdmlSheet()
         sheet.createNewSheet("log")
         sheet.append('No.', 'Part', 'solid', 'logical volume',
@@ -360,13 +333,15 @@ class GdmlExporter:
         return phys_name
 
     def exportSubShapes(self, exportlist, odir):
-        self.printf('Converting parts to gdml files\n')
+        self.freecadPrint('Converting parts to gdml files\n')
         gdml_files = []
         phys_name_list = []
         pos_world_list = []
         rot_world_list = []
 
-        utils.mkdir(odir)
+        if not os.path.exists(odir):
+            os.makedirs(odir)
+
         sheet = gdml_sheet.GdmlSheet()
         sheet.createNewSheet("gdml_log")
         sheet.append("Part", "GDML file", 'solid', 'logical volume',
@@ -387,7 +362,7 @@ class GdmlExporter:
             fname = odir + "/%s_%d.gdml" % (
                 pLabel.getFilenameFromLabel(ascii_label), n)
 
-            self.printf('%s -> %s \n' % (ascii_label, fname))
+            self.freecadPrint('%s -> %s \n' % (ascii_label, fname))
 
             if i.Name == "__world__" and i.TypeId == "Part::Box":
                 continue
@@ -437,7 +412,7 @@ class GdmlExporter:
     def mergeGDML(self, file_list, phys_name_list, pos_world_list,
                   rot_world_list, odir):
         # write World.gdml
-        self.printf('wring world gdml\n')
+        self.freecadPrint('wring world gdml\n')
 
         if len(file_list) > 1:
             gdml = GdmlWriter()
@@ -455,7 +430,7 @@ class GdmlExporter:
     def setMinimalVolume(self, minvol):
         self.min_volume = minvol
 
-    def printf(self, msg):
+    def freecadPrint(self, msg):
         msg += "\n"
         FreeCAD.Console.PrintMessage(msg)
         if self.logfile:

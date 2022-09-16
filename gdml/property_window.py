@@ -9,26 +9,6 @@
 
 import FreeCAD
 from PySide import QtCore, QtGui
-test = {
-    "name": 'name',
-    "vol": 1,
-    "wx": 1,
-    "wy": 1,
-    "wz": 1,
-    "cx": 1,
-    "cy": 2,
-    "cz": 3,
-    "xLen": 1,
-    "yLen": 2,
-    "zLen": 3,
-    "xmin": 4,
-    "xmax": 5,
-    "ymin": 6,
-    "ymax": 7,
-    "zmin": 8,
-    "zmax": 9
-    # "mass": mass
-}
 
 
 class MainWidget(QtGui.QDialog):
@@ -123,11 +103,3 @@ class MainWidget(QtGui.QDialog):
         dialog.exec_()
 
 
-# def main():
-#    app = QtGui.QApplication([])
-#    MainWidget.run(measurements=test)
-#    sys.exit(app.exec_())
-
-
-# if __name__ == '__main__':
-#    main()

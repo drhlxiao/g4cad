@@ -99,7 +99,7 @@ class Export:
             FreeCAD.Console.PrintMessage('Invalid output directory')
 
 
-class MeshPrecisionManager:
+class MeshingPrecisionManager:
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/mesh.svg',
@@ -523,7 +523,7 @@ if FreeCAD.GuiUp:
     FreeCAD.Gui.addCommand('add_cone', AddCone())
 
     FreeCAD.Gui.addCommand('set_material', MaterialSetter())
-    FreeCAD.Gui.addCommand('set_precision', MeshPrecisionManager())
+    FreeCAD.Gui.addCommand('set_precision', MeshingPrecisionManager())
     FreeCAD.Gui.addCommand('set_physical_volume', PhysicalVolumeManager())
 
     FreeCAD.Gui.addCommand('hide_parts', PartVisibilityManager())

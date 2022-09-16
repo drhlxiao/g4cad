@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
-# part of the code taken from  https://github.com/KeithSloan/FreeCAD_GDML
+# author: Hualin Xiao
+# parts of the code taken from  https://github.com/KeithSloan/FreeCAD_GDML
 
 import math
 import re
@@ -8,14 +9,18 @@ import os
 import PartGui
 import FreeCAD
 import Part
-printverbose = False
+verbose = False
 
+def show_message(msg):
+    FreeCAD.Console.PrintMessage(str(msg) + '\n')
+    if verbose:
+        print(str(msg) + '\n')
 
 if FreeCAD.GuiUp:
     import FreeCADGui
     gui = True
 else:
-    if printverbose:
+    if verbose:
         print("FreeCAD Gui not present.")
     gui = False
 
@@ -66,15 +71,15 @@ def myVector(x, y, z):
 
 
 def createBox(solid, volref, pos, rot):
-    printf("CreateBox : ")
-    printf(solid.attrib)
+    show_message("CreateBox : ")
+    show_message(solid.attrib)
     mycube = doc.addObject('Part::Box',
                            volref.get('ref') + '_' + solid.get('name') + '_')
     mycube.Length = solid.get('x')
     mycube.Width = solid.get('y')
     mycube.Height = solid.get('z')
-    printf("Position : ")
-    #printf( pos.attrib)
+    show_message("Position : ")
+    #show_message( pos.attrib)
     base = None
     if pos:
         base = myVector(pos.get('x'), pos.get('y'), pos.get('z'))
@@ -82,8 +87,8 @@ def createBox(solid, volref, pos, rot):
         base = FreeCAD.Vector(0, 0, 0)
 
     if rot:
-        printf("Rotation : ")
-        printf(rot.attrib)
+        show_message("Rotation : ")
+        show_message(rot.attrib)
 
     axis = FreeCAD.Vector(0, 0, 1)
     angle = 0
@@ -105,7 +110,7 @@ def makeCylinder(solid, r):
 
 
 def createTube(solid, volref, pos, rot):
-    printf("CreateTube : ")
+    show_message("CreateTube : ")
     print(solid.attrib)
     rmin = solid.get('rmin')
     rmax = solid.get('rmax')
@@ -135,7 +140,7 @@ def createTube(solid, volref, pos, rot):
 
 
 def createCone(solid, volref, pos, rot):
-    printf("Cone is not implemented ")
+    show_message("Cone is not implemented ")
     print(solid.attrib)
 
 
@@ -143,18 +148,18 @@ def createSolid(solid, volref, pos, rot):
 
     while switch(solid.tag):
         if case('box'):
-            printf("Create box\n")
+            show_message("Create box\n")
             createBox(solid, volref, pos, rot)
             break
         if case('tube'):
-            printf("Create tube\n")
+            show_message("Create tube\n")
             createTube(solid, volref, pos, rot)
             break
         if case('cone'):
-            printf("Create cone\n")
+            show_message("Create cone\n")
             createCone(solid, volref, pos, rot)
             break
-        printf("Solid : " + solid.tag + " Not yet supported")
+        show_message("Solid : " + solid.tag + " Not yet supported")
         break
 
 
@@ -190,12 +195,12 @@ def getVolSolid(root, name):
 
 
 def parsePhysVol(root, ptr):
-    printf("ParsePhyVol")
+    show_message("ParsePhyVol")
     pos = ptr.find("positionref")
     if pos is not None:
         name = getRef(pos)
         pos = root.find("define/position[@name='%s']" % name)
-        printf(pos.attrib)
+        show_message(pos.attrib)
     else:
         pos = ptr.find("position")
     rot = ptr.find("rotationref")
@@ -210,30 +215,30 @@ def parsePhysVol(root, ptr):
     # if ((pos is not None) and (rot is not None)) :
     createSolid(solid, volref, pos, rot)
     # else:
-    #    printf("not to create solid")
+    #    show_message("not to create solid")
 
     parseVolume(root, name)
 
 
 # ParseVolume
 def parseVolume(root, name):
-    printf("ParseVolume : " + name)
+    show_message("ParseVolume : " + name)
     vol = root.find("structure/volume[@name='%s']" % name)
-    printf(vol.attrib)
+    show_message(vol.attrib)
     for pv in vol.findall('physvol'):
         parsePhysVol(root, pv)
 
 
 def processGDML(filename):
     FreeCAD.Console.PrintMessage('Import GDML file : ' + filename + '\n')
-    if printverbose:
-        printf('ImportGDML Version 0.1')
+    if verbose:
+        show_message('ImportGDML Version 0.1')
 
     import xml.etree.ElementTree as ET
     tree = ET.parse(filename)
     root = tree.getroot()
-    if printverbose:
-        printf('Parsing gdml ...\n')
+    if verbose:
+        show_message('Parsing gdml ...\n')
 
     for setup in root.find('setup'):
         setup.attrib
@@ -242,12 +247,8 @@ def processGDML(filename):
         parseVolume(root, ref)
 
     doc.recompute()
-    if printverbose:
-        printf('End ImportGDML')
+    if verbose:
+        show_message('End ImportGDML')
     FreeCAD.Console.PrintMessage('End processing GDML file\n')
 
 
-def printf(msg):
-    FreeCAD.Console.PrintMessage(str(msg) + '\n')
-    if printverbose:
-        print(str(msg) + '\n')

@@ -2,19 +2,13 @@
 """
 Created on Fri Aug 1 11:12:45 2017
 
-@author: Hualin Xiao (hualin.xiao@psi.ch)
+@author: Hualin Xiao (hualin.xiao@se2s.ch)
 
 Material database interface
 """
 
 import ast
 import re
-
-
-def getSafeFilename(filename):
-    return ''.join(ch for ch in filename if ch.isalnum())
-
-
 class LabelManager:
     def __init__(self):
         self._material = ''
@@ -44,7 +38,7 @@ class LabelManager:
 
     def getFilenameFromLabel(self, label):
         self.parse(label)
-        return getSafeFilename(self._prefix)
+        return ''.join(ch for ch in self._prefix if ch.isalnum())
 
     def getMaterial(self):
         return self._material
@@ -76,11 +70,9 @@ class LabelManager:
             if aux_info != '':
                 aux_info += ','
             aux_info += "'pv':'%s'" % self._physical_volume
-
         if not aux_info:
             return self._prefix
-        else:
-            return "%s{%s}" % (self._prefix, aux_info)
+        return "%s{%s}" % (self._prefix, aux_info)
 
     def updateMaterial(self, label, mat):
         self.parse(label)
@@ -93,6 +85,9 @@ class LabelManager:
         return self.formatLabel()
 
     def updatePrecision(self, label, pre):
+        """
+        tessellation accuracy
+        """
         self.parse(label)
         self.setPrecision(pre)
         return self.formatLabel()
@@ -104,9 +99,11 @@ class LabelManager:
         return self.formatLabel()
 
 
-if __name__ == "__main__":
-
+def test():
     pl = LabelManager()
     print(pl.updatePhysicalVolume("HAS_sensor", "sensor"))
     print(pl.updateMaterial("HAS_sensor{'pv':'sensor'}", "G4_Si"))
     print(pl.updatePrecision("HAS_sensor", 0.1))
+
+if __name__ == "__main__":
+    test()
