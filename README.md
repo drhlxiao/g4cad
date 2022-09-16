@@ -27,7 +27,7 @@ We also developed a web version, which can be found at the link http://polar.psi
 
 
 ### Typical Workflow
-1)Activate the workbench "g4cad" in FreeCAD
+1) Activate the workbench "g4cad" in FreeCAD
 2) Open the step file to be converted 
 3) click the icon "add world volume" in the toolbar to add a world volume 
 4) Select a solid, set material
