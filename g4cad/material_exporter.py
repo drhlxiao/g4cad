@@ -5,8 +5,8 @@ Print all materials in the database to  a csv file
 @date: Dec. 08, 2017
 '''
 
-import material_database
 import xlwt
+import material_database
 
 
 def export_material():

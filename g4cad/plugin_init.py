@@ -5,10 +5,12 @@ Created on Fri Dec  1 11:12:45 2017
 @author: Hualin Xiao (hualin.xiao@psi.ch)
 """
 
+import os
+import re
 from PySide import QtGui, QtCore
+
 import FreeCAD
 import FreeCADGui
-import os
 import ImportGui
 import gdml_importer
 
@@ -17,7 +19,6 @@ import os.path
 import gdml_exporter
 import g4_materials
 
-import re
 import label_manager
 from material_database import MaterialDatabase
 from os.path import expanduser

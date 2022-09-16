@@ -1,13 +1,10 @@
 #!/usr/bin/python
-__author__ = 'Hualin Xiao'
-__date__ = 'Sept. 10th, 2017'
 
 import sys
 from PySide.QtCore import *
 from PySide.QtGui import *
 
 from material_database import MaterialDatabase
-import os.path
 
 
 class MainWidget(QDialog):
