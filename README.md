@@ -21,7 +21,7 @@ G4cad is a workbench for FreeCAD, which is a general-purpose parametric 3D compu
 3) find the folder g4cad in unzipped folder, copy it to FreeCAD workbench directory (~/.FreeCAD/Mod on Linux. On windows, You can also find folder "Mod" under the installation directory)
 
 
-### Workflow
+### Typical Workflow
 Here is the normal workflow
 1) Open the step file to be converted 
 2) click the icon "add world volume" in the toolbar to add a world volume 
@@ -43,8 +43,10 @@ G4VPhysicalVolume *world= fParser.GetWorldVolume();
   return world;
 }
  ```
-
+ ### Screenshots
+ * g4cad Workbench
 ![g4cad workbench](./tests/g4cad.png)
+ *  view of the exported model in geant4
 ![converted model in g4](./tests/model_in_g4.png  )
 
 
