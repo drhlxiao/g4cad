@@ -42,7 +42,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct(){
 G4String worldGdmlFilename="<GMLD_OUTPUT_PATH>/gdml/World.gdml"
 G4GDMLParser parser;
 parser.Read(worldGdmlFilename);
-G4VPhysicalVolume *world= fParser.GetWorldVolume();     
+G4VPhysicalVolume *world= parser.GetWorldVolume();     
 //other code 
   return world;
 }
