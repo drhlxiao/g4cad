@@ -1,4 +1,4 @@
-# g4cad   - A freecad plugin which allows exporting CAD files to geant4 gdml files
+# g4cad   - A freecad workbench for converting CAD files to gdml 
 
 People usually spend most of the time developing mass model when developing a Geant4-based Monte Carlo simulation package. For simple geometries, it is relatively easy to describe them using CGS models. 
 However, this becomes almost impossible for complex geometries. 
