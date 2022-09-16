@@ -33,15 +33,14 @@ Here is the normal workflow
 8) Reading gdml files in Geant4
     Here is a code snippet 
 ```cpp
-G4VPhysicalVolume* DetectorConstruction::Construct()
-{
-  G4String worldGdmlFilename="<GMLD_OUTPUT_PATH>/gdml/World.gdml"
- 	G4GDMLParser parser;
- 	parser.Read(worldGdmlFilename);
- G4VPhysicalVolume *world= fParser.GetWorldVolume();     
- 
+G4VPhysicalVolume* DetectorConstruction::Construct(){
+G4String worldGdmlFilename="<GMLD_OUTPUT_PATH>/gdml/World.gdml"
+G4GDMLParser parser;
+parser.Read(worldGdmlFilename);
+G4VPhysicalVolume *world= fParser.GetWorldVolume();     
+//other code 
   return world;
- }
+}
  ```
 
 ![g4cad workbench](./tests/g4cad.png)
