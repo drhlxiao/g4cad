@@ -32,10 +32,10 @@ Here is the normal workflow
 7) If everything goes well, the gdml files are written to gdml/ in the specified folder and a log file can also be found in the folder.  
 8) Reading gdml files in Geant4
     Here is a code snippet 
-    ```cpp
+```cpp
 G4VPhysicalVolume* DetectorConstruction::Construct()
 {
-G4String worldGdmlFilename="<GMLD_OUTPUT_PATH>/gdml/World.gdml"
+  G4String worldGdmlFilename="<GMLD_OUTPUT_PATH>/gdml/World.gdml"
  	G4GDMLParser parser;
  	parser.Read(worldGdmlFilename);
  G4VPhysicalVolume *world= fParser.GetWorldVolume();     
