@@ -22,7 +22,14 @@ G4cad is a workbench for FreeCAD, which is a general-purpose parametric 3D compu
 
 
 ### Workflow
-Here is the normal flow
+Here is the normal workflow
+1) Open the step file to be converted 
+2) click the icon "add world volume" in the toolbar to add a world volume 
+3) Select a solid, set material
+4) If the material you want is not in the list, open the user_materials.json with a text editor, add the information of the material
+5) Select the solids to be exported
+6) click the icon "Export solids to gdml files" to generate gdml files
+7) If everything goes well, 
 
 ![g4cad workbench](./tests/g4cad.png)
 ![converted model in g4](./tests/model_in_g4.png  )
