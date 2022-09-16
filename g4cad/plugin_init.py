@@ -38,7 +38,7 @@ class ImportFile:
 
     def GetResources(self):
         return {
-            'Pixmap': __dir__ + '/icons/import.svg',
+            'Pixmap': __dir__ + '/icons/import.png',
             'MenuText': 'Import',
             'ToolTip': 'Import gdml files or other files'
         }
@@ -60,7 +60,7 @@ class Export:
 
     def GetResources(self):
         return {
-            'Pixmap': __dir__ + '/icons/export.svg',
+            'Pixmap': __dir__ + '/icons/export.png',
             'MenuText': 'Export',
             'ToolTip': 'Export solids to gdml files'
         }
