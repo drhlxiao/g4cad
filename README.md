@@ -21,6 +21,15 @@ G4cad is a workbench for FreeCAD, which is a general-purpose parametric 3D compu
 3) find the folder g4cad in unzipped folder, copy it to FreeCAD workbench directory (~/.FreeCAD/Mod on Linux. On windows, You can also find Mod folder)
 
 
+### Workflow
+Here is the normal flow
+
 ![g4cad workbench](./tests/g4cad.png)
 ![converted model in g4](./tests/model_in_g4.png  )
+
+
+### Cite this work
+
+
+
 
