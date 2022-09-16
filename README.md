@@ -14,6 +14,7 @@ G4cad is a workbench for FreeCAD, which is a general-purpose parametric 3D compu
 ### Installation
 1) Download g4cad https://github.com/drhlxiao/g4cad/archive/refs/heads/main.zip
 2) Unzip the downloaded zip file
+3) find the folder g4cad in unzipped folder, copy it to FreeCAD workbench directory (~/.FreeCAD/Mode on Linux)
 
 ![g4cad workbench](./tests/g4cad.png)
 ![converted model in g4](./tests/model_in_g4.png  )
