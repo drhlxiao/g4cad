@@ -18,7 +18,7 @@ G4cad is a workbench for FreeCAD, which is a general-purpose parametric 3D compu
 ### Installation
 1) Download g4cad https://github.com/drhlxiao/g4cad/archive/refs/heads/main.zip
 2) Unzip the downloaded zip file
-3) find the folder g4cad in unzipped folder, copy it to FreeCAD workbench directory (~/.FreeCAD/Mod on Linux. On windows, You can also find Mod folder)
+3) find the folder g4cad in unzipped folder, copy it to FreeCAD workbench directory (~/.FreeCAD/Mod on Linux. On windows, You can also find folder "Mod" under the installation directory)
 
 
 ### Workflow
@@ -29,7 +29,20 @@ Here is the normal workflow
 4) If the material you want is not in the list, open the user_materials.json with a text editor, add the information of the material
 5) Select the solids to be exported
 6) click the icon "Export solids to gdml files" to generate gdml files
-7) If everything goes well, 
+7) If everything goes well, the gdml files are written to gdml/ in the specified folder and a log file can also be found in the folder.  
+8) Reading gdml files in Geant4
+    Here is a code snippet 
+    ```cpp
+G4VPhysicalVolume* DetectorConstruction::Construct()
+{
+G4String worldGdmlFilename="<GMLD_OUTPUT_PATH>/gdml/World.gdml"
+ 	G4GDMLParser parser;
+ 	parser.Read(worldGdmlFilename);
+ G4VPhysicalVolume *world= fParser.GetWorldVolume();     
+ 
+  return world;
+ }
+ ```
 
 ![g4cad workbench](./tests/g4cad.png)
 ![converted model in g4](./tests/model_in_g4.png  )
