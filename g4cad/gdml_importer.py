@@ -2,19 +2,22 @@
 # author: Hualin Xiao
 # parts of the code taken from  https://github.com/KeithSloan/FreeCAD_GDML
 
-import math
-import re
 import sys
 import os
+import math
+import re
 import PartGui
 import FreeCAD
 import Part
+
 verbose = False
+
 
 def show_message(msg):
     FreeCAD.Console.PrintMessage(str(msg) + '\n')
     if verbose:
         print(str(msg) + '\n')
+
 
 if FreeCAD.GuiUp:
     import FreeCADGui
@@ -23,7 +26,6 @@ else:
     if verbose:
         print("FreeCAD Gui not present.")
     gui = False
-
 
 if open.__module__ == '__builtin__':
     pythonopen = open  # to distinguish python built-in open function from the one declared here
@@ -250,5 +252,3 @@ def processGDML(filename):
     if verbose:
         show_message('End ImportGDML')
     FreeCAD.Console.PrintMessage('End processing GDML file\n')
-
-

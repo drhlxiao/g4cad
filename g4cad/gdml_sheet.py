@@ -11,6 +11,7 @@ import Spreadsheet
 
 
 class GdmlSheet:
+
     def __init__(self):
         self.doc = None
         self.sp = None
@@ -37,7 +38,7 @@ class GdmlSheet:
             return False
         alphab = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         for i, arg in enumerate(args):
-            self.sp.set('{}{}' .format(alphab[i], self.row), str(arg))
+            self.sp.set('{}{}'.format(alphab[i], self.row), str(arg))
 
         self.row += 1
 

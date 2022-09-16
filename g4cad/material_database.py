@@ -7,14 +7,13 @@ Created on Fri Dec  1 11:12:45 2017
 
 import os
 import sys
-import shutil
 import json
 import webbrowser
-import subprocess
 import elements
 
 
 class MaterialDatabase(object):
+
     def __init__(self):
         self._data = None
         self._databaseFilename = ''
@@ -32,7 +31,7 @@ class MaterialDatabase(object):
             webbrowser.open(self._databaseFilename)
 
     def loadDatabase(self):
-        current_path=os.path.dirname(os.path.realpath(__file__))
+        current_path = os.path.dirname(os.path.realpath(__file__))
         dirs = [
             current_path,
             os.path.expanduser("~") + '/.FreeCAD', '{}/db'.format(current_path)

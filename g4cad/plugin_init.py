@@ -5,7 +5,6 @@ Created on Fri Dec  1 11:12:45 2017
 @author: Hualin Xiao (hualin.xiao@psi.ch)
 """
 
-import material_manager_window
 from PySide import QtGui, QtCore
 import FreeCAD
 import FreeCADGui
@@ -35,6 +34,7 @@ __dir__ = os.path.dirname(__file__)
 
 # non icon comands
 class ImportFile:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/import.svg',
@@ -56,6 +56,7 @@ class ImportFile:
 
 # icon comands
 class Export:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/export.svg',
@@ -86,9 +87,8 @@ class Export:
             FreeCAD.Console.PrintWarning('No Active object!')
             return
 
-        FreeCAD.Console.PrintMessage(
-            'Number of objects to be exported: %d' %
-            len(sel))
+        FreeCAD.Console.PrintMessage('Number of objects to be exported: %d' %
+                                     len(sel))
         odir = QtGui.QFileDialog.getExistingDirectory(
             caption="Set output directory", directory=expanduser('~'))
         FreeCAD.Console.PrintMessage('exporting...')
@@ -100,6 +100,7 @@ class Export:
 
 
 class MeshingToleranceManager:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/mesh.png',
@@ -132,8 +133,9 @@ class MeshingToleranceManager:
                 caption = 'Tessellation  tolerance for the selected %d parts' % len(
                     sel)
 
-            item, ok = QtGui.QInputDialog.getItem(
-                None, caption, "Tessellation tolerance:", items, 0, False)
+            item, ok = QtGui.QInputDialog.getItem(None, caption,
+                                                  "Tessellation tolerance:",
+                                                  items, 0, False)
             if ok and item:
                 for obj in sel:
                     label = obj.Label
@@ -146,6 +148,7 @@ class MeshingToleranceManager:
 
 
 class MaterialManager:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/database.svg',
@@ -161,6 +164,7 @@ class MaterialManager:
 
 
 class MaterialSetter:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/material.png',
@@ -201,6 +205,7 @@ class MaterialSetter:
 
 
 class MeasurementTool:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/measure.png',
@@ -259,6 +264,7 @@ class MeasurementTool:
 
 
 class PartVisibilityManager:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/hide.svg',
@@ -295,6 +301,7 @@ class PartVisibilityManager:
 
 
 class PartFilter:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/search.svg',
@@ -331,9 +338,10 @@ class PartFilter:
 
 
 class PhysicalVolumeManager:
+
     def GetResources(self):
         return {
-            'Pixmap': __dir__ + '/icons/setpv.png',
+            'Pixmap': __dir__ + '/icons/setpv.svg',
             'MenuText': 'Set physical volume name',
             'ToolTip': 'Set physical volume name '
         }
@@ -351,8 +359,9 @@ class PhysicalVolumeManager:
             FreeCAD.Console.PrintWarning('No Active object!')
             return
         else:
-            name, ok = QtGui.QInputDialog.getText(
-                None, "Set physical volume name", "Physical volume name:")
+            name, ok = QtGui.QInputDialog.getText(None,
+                                                  "Set physical volume name",
+                                                  "Physical volume name:")
             if not ok:
                 return
             elif name.strip():
@@ -372,6 +381,7 @@ class PhysicalVolumeManager:
 
 
 class AddWorld:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/world.svg',
@@ -415,6 +425,7 @@ class AddWorld:
 
 
 class AddBox:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/cube.svg',
@@ -441,6 +452,7 @@ class AddBox:
 
 
 class AddCylinder:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/cylinder.svg',
@@ -465,6 +477,7 @@ class AddCylinder:
 
 
 class AddSphere:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/sphere.svg',
@@ -488,6 +501,7 @@ class AddSphere:
 
 
 class AddCone:
+
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/cone.svg',

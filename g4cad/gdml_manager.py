@@ -7,7 +7,6 @@ Created on May 16 11:12:45 2017
 """
 
 import math
-import numpy as np
 
 import numpy as np
 import g4_materials
@@ -17,6 +16,7 @@ import time
 
 
 class GdmlManager(object):
+
     def __init__(self):
         self.define = ['define', {}, []]  # name, data, children
         self.materials = ['materials', {}, []]
@@ -36,8 +36,7 @@ class GdmlManager(object):
         self.db = material_database.MaterialDatabase()
 
         self.document = [
-            'gdml',
-            {
+            'gdml', {
                 'xmlns:gdml':
                 "http://cern.ch/2001/Schemas/GDML",
                 'xmlns:xsi':
@@ -63,7 +62,7 @@ class GdmlManager(object):
             self.freecadPrint('Geant4 default material: ' + mat)
         else:
             self.freecadPrint('Loading material' + mat +
-                        ' information from database')
+                              ' information from database')
             self.addDatabaseMaterial(mat)
 
     def adddMaterial(self, name, density, componds, density_unit="g/cm3"):
@@ -110,8 +109,7 @@ class GdmlManager(object):
             v3 = tri[2]
             vn3 = "__v_%s_%05d" % (name, v3)
             faces.append([
-                'triangular',
-                {
+                'triangular', {
                     'vertex1': vn1,
                     'vertex2': vn2,
                     'vertex3': vn3,
@@ -346,8 +344,10 @@ class GdmlManager(object):
                           world_mat='G4_Galactic'):
         if self.world_volume_name == "":
             solid_world = self.addWorld('__box_world__', x, y, z)
-            self.world_volume_name = self.addVolume(
-                'world', solid_world, world_mat, daughters=[])
+            self.world_volume_name = self.addVolume('world',
+                                                    solid_world,
+                                                    world_mat,
+                                                    daughters=[])
 
         return self.world_volume_name
 
@@ -378,8 +378,7 @@ class GdmlManager(object):
                   lunit="cm",
                   aunit="deg"):
         self.solids[2].append([
-            'sphere',
-            {
+            'sphere', {
                 'name': name,
                 'rmin': rmin,
                 'rmax': rmax,
@@ -404,8 +403,7 @@ class GdmlManager(object):
                 lunit="cm",
                 aunit="deg"):
         self.solids[2].append([
-            'cone',
-            {
+            'cone', {
                 'name': name,
                 'z': z,
                 'rmin1': rmin1,
@@ -436,8 +434,7 @@ class GdmlManager(object):
 
     def addPara(self, name, x, y, z, alpha, theta, phi):
         self.solids[2].append([
-            'para',
-            {
+            'para', {
                 'name': name,
                 'x': x,
                 'y': y,
@@ -451,8 +448,7 @@ class GdmlManager(object):
     def addTrap(self, name, z, theta, phi, y1, x1, x2, alpha1, y2, x3, x4,
                 alpha2):
         self.solids[2].append([
-            'trap',
-            {
+            'trap', {
                 'name': name,
                 'z': z,
                 'theta': theta,
@@ -470,8 +466,7 @@ class GdmlManager(object):
 
     def addTrd(self, name, x1, x2, y1, y2, z):
         self.solids[2].append([
-            'trd',
-            {
+            'trd', {
                 'name': name,
                 'x1': x1,
                 'x2': x2,
@@ -491,8 +486,7 @@ class GdmlManager(object):
                 lunit="cm",
                 aunit="deg"):
         self.solids[2].append([
-            'tube',
-            {
+            'tube', {
                 'name': name,
                 'rmin': rmin,
                 'rmax': rmax,
@@ -527,8 +521,7 @@ class GdmlManager(object):
                 }, []
             ])
         self.solids[2].append([
-            'polycone',
-            {
+            'polycone', {
                 'name': name,
                 'startphi': startphi,
                 'deltaphi': deltaphi
@@ -537,8 +530,7 @@ class GdmlManager(object):
 
     def addTorus(self, name, r, rmin, rmax, startphi, deltaphi):
         self.solids[2].append([
-            'torus',
-            {
+            'torus', {
                 'name': name,
                 'rtor': r,
                 'rmin': rmin,
@@ -559,8 +551,7 @@ class GdmlManager(object):
                 }, []
             ])
         self.solids[2].append([
-            'polyhedra',
-            {
+            'polyhedra', {
                 'name': name,
                 'startphi': startphi,
                 'totalphi': totalphi,
@@ -579,8 +570,7 @@ class GdmlManager(object):
 
     def addHype(self, name, rmin, rmax, inst, outst, z):
         self.solids[2].append([
-            'hype',
-            {
+            'hype', {
                 'name': name,
                 'rmin': rmin,
                 'rmax': rmax,
@@ -612,8 +602,7 @@ class GdmlManager(object):
             y_off = y_offset_vec[i]
             scaling = scaling_vec[i]
             z_sections.append([
-                'section',
-                {
+                'section', {
                     'zOrder': i + 1,
                     'zPosition': z,
                     'xOffset': x_off,
@@ -631,8 +620,7 @@ class GdmlManager(object):
     def addPos(self, subels, type, name, v, unit="m"):
         if v[0] != 0.0 or v[1] != 0.0 or v[2] != 0.0:
             subels.append([
-                type,
-                {
+                type, {
                     'name': name,
                     'x': v[0],
                     'y': v[1],
@@ -644,8 +632,7 @@ class GdmlManager(object):
     def addRot(self, subels, type, name, v, unit="deg"):
         if v[0] != 0.0 or v[1] != 0.0 or v[2] != 0.0:
             subels.append([
-                type,
-                {
+                type, {
                     'name': name,
                     'x': v[0],
                     'y': v[1],
@@ -1243,5 +1230,3 @@ class GdmlManager(object):
 
     def freecadPrint(self, msg):
         FreeCAD.Console.PrintMessage(msg + '\n')
-
-

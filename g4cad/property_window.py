@@ -12,6 +12,7 @@ from PySide import QtCore, QtGui
 
 
 class MainWidget(QtGui.QDialog):
+
     def __init__(self, parent):
         super(MainWidget, self).__init__(parent)
         self.setObjectName("Dialog")
@@ -101,5 +102,3 @@ class MainWidget(QtGui.QDialog):
         except Exception as e:
             FreeCAD.Console.PrintWarning(str(e))
         dialog.exec_()
-
-

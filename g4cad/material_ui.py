@@ -12,6 +12,7 @@ from PySide import QtCore, QtGui
 
 
 class SimpleListModel(QtCore.QAbstractListModel):
+
     def __init__(self, contents):
         super(SimpleListModel, self).__init__()
         self.contents = contents
@@ -25,6 +26,7 @@ class SimpleListModel(QtCore.QAbstractListModel):
 
 
 class setMaterialUI(QtGui.QDialog):
+
     def __init__(self, parent=None):
         super(setMaterialUI, self).__init__(parent)
         self.setWindowTitle("Material selector")

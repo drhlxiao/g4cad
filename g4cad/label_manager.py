@@ -9,7 +9,10 @@ Material database interface
 
 import ast
 import re
+
+
 class LabelManager:
+
     def __init__(self):
         self._material = ''
         self._precision = 0
@@ -104,6 +107,7 @@ def test():
     print(pl.updatePhysicalVolume("HAS_sensor", "sensor"))
     print(pl.updateMaterial("HAS_sensor{'pv':'sensor'}", "G4_Si"))
     print(pl.updatePrecision("HAS_sensor", 0.1))
+
 
 if __name__ == "__main__":
     test()

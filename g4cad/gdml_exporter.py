@@ -15,12 +15,13 @@ To do list:
       * editing models with freecad
 """
 
+import os
 import sys
+import re
+import ImportGui
 import FreeCAD
 import FreeCADGui
-import os
-import ImportGui
-import re
+
 import label_manager
 import gdml_sheet
 from gdml_manager import GdmlManager
@@ -31,8 +32,8 @@ def get_valid_filename(s):
     return re.sub(r'(?u)[^-\w.]', '', s)
 
 
-
 class GdmlExporter:
+
     def __init__(self):
         self.min_volume = 0
         self.precision = 0.1
@@ -47,7 +48,7 @@ class GdmlExporter:
             FreeCAD.Console.PrintWarning(str(e))
             return []
 
-    def  getEulerAngle(self, ob):
+    def getEulerAngle(self, ob):
         '''debug and test needed'''
         try:
             rot = ob.Placement.Rotation
@@ -89,8 +90,7 @@ class GdmlExporter:
             v3 = tri[2]
             vn3 = "__v_%s_%05d" % (solid_name, v3)
             faces.append([
-                'triangular',
-                {
+                'triangular', {
                     'vertex1': vn1,
                     'vertex2': vn2,
                     'vertex3': vn3,
@@ -153,15 +153,16 @@ class GdmlExporter:
             displacement, rot = self.checkPlacement(ob, 0, 0, 0)
 
         elif ob.TypeId == "Part::Box":
-            self.freecadPrint("cube : (" + str(ob.Length) + "," + str(ob.Width) +
-                        "," + str(ob.Height) + ")")
-            displacement, rot = self.checkPlacement(
-                ob, -ob.Length / 2, -ob.Width / 2, -ob.Height / 2)
+            self.freecadPrint("cube : (" + str(ob.Length) + "," +
+                              str(ob.Width) + "," + str(ob.Height) + ")")
+            displacement, rot = self.checkPlacement(ob, -ob.Length / 2,
+                                                    -ob.Width / 2,
+                                                    -ob.Height / 2)
             gd.addBox(solid_name, ob.Length, ob.Width, ob.Height, "mm")
 
         elif ob.TypeId == "Part::Cylinder":
-            self.freecadPrint("cylinder : Height " + str(ob.Height) + " Radius " +
-                        str(ob.Radius))
+            self.freecadPrint("cylinder : Height " + str(ob.Height) +
+                              " Radius " + str(ob.Radius))
             displacement, rot = self.checkPlacement(ob, 0, 0, -ob.Height / 2)
             gd.addTube(solid_name, 0, ob.Radius, ob.Height, 0, 360, "mm",
                        "deg")
@@ -170,7 +171,7 @@ class GdmlExporter:
 
         elif ob.TypeId == "Part::Cone":
             self.freecadPrint("cone : Height " + str(ob.Height) + " Radius1 " +
-                        str(ob.Radius1) + " Radius2 " + str(ob.Radius2))
+                              str(ob.Radius1) + " Radius2 " + str(ob.Radius2))
             displacement, rot = self.checkPlacement(ob, 0, 0, -ob.Height / 2)
             gd.addCone(solid_name, ob.Height, 0, 0, ob.Radius1, ob.Radius2, 0,
                        360, "mm", "deg")
@@ -277,11 +278,8 @@ class GdmlExporter:
         sheet = gdml_sheet.GdmlSheet()
         sheet.createNewSheet("log")
         sheet.append('No.', 'Part', 'solid', 'logical volume',
-                     'physical volume', 'material',
-                     'center x', 'center y', 'center z',
-                     'length x',
-                     'length y',
-                     'length z')
+                     'physical volume', 'material', 'center x', 'center y',
+                     'center z', 'length x', 'length y', 'length z')
         materials = []
         for num, i in enumerate(exportlist):
 
@@ -310,15 +308,15 @@ class GdmlExporter:
             length_y = ''
             length_z = ''
             if boundBox:
-                center_x = (boundBox.XMin+boundBox.XMax)/2
-                center_y = (boundBox.YMin+boundBox.YMax)/2
-                center_z = (boundBox.ZMin+boundBox.ZMax)/2
+                center_x = (boundBox.XMin + boundBox.XMax) / 2
+                center_y = (boundBox.YMin + boundBox.YMax) / 2
+                center_z = (boundBox.ZMin + boundBox.ZMax) / 2
                 length_x = boundBox.XLength
                 length_y = boundBox.YLength
                 length_z = boundBox.ZLength
 
-            sheet.append(num, label, solid, vol, phys, mat,
-                         center_x, center_y, center_z, length_x, length_y, length_z)
+            sheet.append(num, label, solid, vol, phys, mat, center_x, center_y,
+                         center_z, length_x, length_y, length_z)
 
         gdml.moveFrontLast()
         gdml.addSetup('world', '1.0', world_volume_name)
@@ -346,12 +344,8 @@ class GdmlExporter:
         sheet = gdml_sheet.GdmlSheet()
         sheet.createNewSheet("gdml_log")
         sheet.append("Part", "GDML file", 'solid', 'logical volume',
-                     'physical volume', 'material',
-                     'center x', 'center y', 'center z',
-                     'length x',
-                     'length y',
-                     'length z'
-                     )
+                     'physical volume', 'material', 'center x', 'center y',
+                     'center z', 'length x', 'length y', 'length z')
 
         for n, i in enumerate(exportlist):
             if i.TypeId == 'Spreadsheet::Sheet':
@@ -392,18 +386,16 @@ class GdmlExporter:
             length_y = ''
             length_z = ''
             if boundBox:
-                center_x = (boundBox.XMin+boundBox.XMax)/2
-                center_y = (boundBox.YMin+boundBox.YMax)/2
-                center_z = (boundBox.ZMin+boundBox.ZMax)/2
+                center_x = (boundBox.XMin + boundBox.XMax) / 2
+                center_y = (boundBox.YMin + boundBox.YMax) / 2
+                center_z = (boundBox.ZMin + boundBox.ZMax) / 2
                 length_x = boundBox.XLength
                 length_y = boundBox.YLength
                 length_z = boundBox.ZLength
 
-            sheet.append(
-                pLabel.getLabel(ascii_label), os.path.basename(fname), sol,
-                vol, phys, mat,
-                center_x, center_y, center_z, length_x, length_y, length_z
-            )
+            sheet.append(pLabel.getLabel(ascii_label), os.path.basename(fname),
+                         sol, vol, phys, mat, center_x, center_y, center_z,
+                         length_x, length_y, length_z)
 
             gdml.moveFrontLast()
             gdml.addSetup('world', '0.0', vol)

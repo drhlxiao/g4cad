@@ -10,9 +10,8 @@ from material_database import MaterialDatabase
 import os.path
 
 
-
-
 class MainWidget(QDialog):
+
     def __init__(self, parent):
         super(MainWidget, self).__init__(parent)
         self.setGeometry(200, 200, 440, 680)
