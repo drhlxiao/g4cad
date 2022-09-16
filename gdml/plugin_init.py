@@ -99,12 +99,12 @@ class Export:
             FreeCAD.Console.PrintMessage('Invalid output directory')
 
 
-class MeshingPrecisionManager:
+class MeshingToleranceManager:
     def GetResources(self):
         return {
-            'Pixmap': __dir__ + '/icons/mesh.svg',
-            'MenuText': 'Set precision',
-            'ToolTip': 'set precision'
+            'Pixmap': __dir__ + '/icons/mesh.png',
+            'MenuText': 'Set tessellation  tolerance ',
+            'ToolTip': 'set tessellation tolerance'
         }
 
     def IsActive(self):
@@ -150,7 +150,7 @@ class MaterialManager:
         return {
             'Pixmap': __dir__ + '/icons/database.svg',
             'MenuText': 'Material database',
-            'ToolTip': 'Material database management'
+            'ToolTip': 'Material database'
         }
 
     def IsActive(self):
@@ -163,7 +163,7 @@ class MaterialManager:
 class MaterialSetter:
     def GetResources(self):
         return {
-            'Pixmap': __dir__ + '/icons/material.svg',
+            'Pixmap': __dir__ + '/icons/material.png',
             'MenuText': 'Set material',
             'ToolTip': 'set material'
         }
@@ -203,9 +203,9 @@ class MaterialSetter:
 class MeasurementTool:
     def GetResources(self):
         return {
-            'Pixmap': __dir__ + '/icons/measure.svg',
-            'MenuText': 'Show dimensions',
-            'ToolTip': 'Show dimensions'
+            'Pixmap': __dir__ + '/icons/measure.png',
+            'MenuText': 'Measure the dimensions  of the selected object',
+            'ToolTip': 'Measure the dimensions of the selected object'
         }
 
     def IsActive(self):
@@ -333,9 +333,9 @@ class PartFilter:
 class PhysicalVolumeManager:
     def GetResources(self):
         return {
-            'Pixmap': __dir__ + '/icons/setpv.svg',
-            'MenuText': 'Set physical volume',
-            'ToolTip': 'Set physical volume '
+            'Pixmap': __dir__ + '/icons/setpv.png',
+            'MenuText': 'Set physical volume name',
+            'ToolTip': 'Set physical volume name '
         }
 
     def IsActive(self):
@@ -523,7 +523,7 @@ if FreeCAD.GuiUp:
     FreeCAD.Gui.addCommand('add_cone', AddCone())
 
     FreeCAD.Gui.addCommand('set_material', MaterialSetter())
-    FreeCAD.Gui.addCommand('set_precision', MeshingPrecisionManager())
+    FreeCAD.Gui.addCommand('set_tolerance', MeshingToleranceManager())
     FreeCAD.Gui.addCommand('set_physical_volume', PhysicalVolumeManager())
 
     FreeCAD.Gui.addCommand('hide_parts', PartVisibilityManager())

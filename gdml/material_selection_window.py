@@ -15,7 +15,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class Dialog(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super(Dialog, self).__init__(parent)
-        self.setObjectName("Dialog")
+        self.setObjectName("Set material for the selected object. ")
         self.resize(361, 442)
         self.verticalLayout = QtWidgets.QVBoxLayout(self)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -48,7 +48,7 @@ class Dialog(QtWidgets.QDialog):
         self.gridLayout.addWidget(self.buttonBox, 2, 3, 1, 1)
         self.verticalLayout.addLayout(self.gridLayout)
         self.filterLineEdit.textChanged.connect(self.filterTextChanged)
-        self.setWindowTitle("Dialog")
+        self.setWindowTitle("Set material for the selected object")
         self.label.setText('Filter')
         self.toolButton.setText('Database')
 

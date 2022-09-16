@@ -255,7 +255,7 @@ static char *_c2f5c2915484604c2a3458ab27f4644wNGoqE062hGasR80[] = {
         import plugin_init
         self.list = [
             "import", "export", "add_world", "add_box", "add_sphere",
-            "add_cylinder", "add_cone", "set_material", "set_precision",
+            "add_cylinder", "add_cone", "set_material", "set_tolerance",
             "set_physical_volume", "hide_parts", "filter_parts",
             "show_measurements", "manage_materials"
         ]
