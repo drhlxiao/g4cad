@@ -23,6 +23,7 @@ import ImportGui
 import re
 import label_manager
 import gdml_sheet
+from gdml_manager import GdmlManager
 
 
 def get_valid_filename(s):
@@ -46,7 +47,7 @@ class GdmlExporter:
             FreeCAD.Console.PrintWarning(str(e))
             return []
 
-    def  get_euler_angle(self, ob):
+    def  getEulerAngle(self, ob):
         '''debug and test needed'''
         try:
             rot = ob.Placement.Rotation
@@ -269,7 +270,7 @@ class GdmlExporter:
         self.logfile = open(logfilename, 'w')
 
     def exportToSingleFile(self, exportlist, fname):
-        gdml = GdmlWriter()
+        gdml = GdmlManager()
         self.checkWorld(gdml)
         world_volume_name = gdml.createWorldVolume()
         self.freecadPrint("world:" + world_volume_name)
@@ -372,7 +373,7 @@ class GdmlExporter:
 
             gdml_files.append(fname)
 
-            gdml = GdmlWriter()
+            gdml = GdmlManager()
             self.checkWorld(gdml)
 
             world_volume_name = gdml.createWorldVolume()
@@ -415,7 +416,7 @@ class GdmlExporter:
         self.freecadPrint('wring world gdml\n')
 
         if len(file_list) > 1:
-            gdml = GdmlWriter()
+            gdml = GdmlManager()
             self.checkWorld(gdml)
             world_volume_name = gdml.createWorldVolume()
             fname_out = '%s/World.gdml' % (odir)

@@ -865,7 +865,7 @@ class GdmlManager(object):
                 gdml_file.write('/>\n')
 
         gdml_file.write('<?xml version="1.0" encoding="UTF-8" ?>\n')
-        creator_info = '''<!--  Created by Freecad G4GeoCreator (https://github.com/drhlxiao/freecad-geant4-gdml-workbench/) at  %s.-->\n    ''' % time.strftime(
+        creator_info = '''<!--  Created by Freecad g4cad workbench (https://github.com/drhlxiao/g4cad) at  %s.-->\n    ''' % time.strftime(
             '%c')
         gdml_file.write(creator_info)
         writeElement(self.document, '')
