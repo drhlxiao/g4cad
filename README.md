@@ -53,7 +53,17 @@ G4VPhysicalVolume *world= fParser.GetWorldVolume();
 
 ### Cite this work
 ```sh
-Hualin Xiao. (2022). G4CAD - A freecad workbench for converting CAD files to gdml (v1.0). Zenodo. https://doi.org/10.5281/zenodo.7085915
+@software{g4cad,
+  author       = {Hualin Xiao},
+  title        = {{g4cad - A freecad workbench for converting CAD 
+                   files to gdml}},
+  month        = sep,
+  year         = 2022,
+  publisher    = {Zenodo},
+  version      = {v1.0},
+  doi          = {10.5281/zenodo.7085915},
+  url          = {https://doi.org/10.5281/zenodo.7085915}
+}
 ```
 
 
