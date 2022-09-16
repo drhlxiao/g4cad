@@ -22,7 +22,7 @@ G4cad is a workbench for FreeCAD, which is a general-purpose parametric 3D compu
 
 
 ### Typical Workflow
-Here is the normal workflow
+
 1) Open the step file to be converted 
 2) click the icon "add world volume" in the toolbar to add a world volume 
 3) Select a solid, set material
