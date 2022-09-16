@@ -53,7 +53,7 @@ G4VPhysicalVolume *world= fParser.GetWorldVolume();
 If you use g4cad in your work, please use the following citation,
 ```sh
 @software{g4cad,
-  author       = {Hualin Xiao},
+  author       = {Hualin Xiao, Wojtek Hajdas},
   title        = {{g4cad - A freecad workbench for converting CAD 
                    files to gdml}},
   month        = sep,
