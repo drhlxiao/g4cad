@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7085915.svg)](https://doi.org/10.5281/zenodo.7085915)
 # g4cad   - A freecad workbench for converting CAD files to gdml 
 
 People usually spend most of the time developing mass model when developing a Geant4-based Monte Carlo simulation package. For simple geometries, it is relatively easy to describe them using CGS models. 
