@@ -65,6 +65,8 @@ If you use g4cad in your work, please use the following citation,
   url          = {https://doi.org/10.5281/zenodo.7085915}
 }
 ```
+### Maintanance and service
+Maintainance and extended services related this software can be provide by [SE2S Ltd.](https://www.se2s.ch/)
 
  ### Screenshots
  * g4cad Workbench
