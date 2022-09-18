@@ -3,7 +3,7 @@
 
 People usually spend most of the time developing mass model when developing a Geant4-based Monte Carlo simulation package. For simple geometries, it is relatively easy to describe them using CGS models. 
 However, this becomes almost impossible for complex geometries. 
-G4cad is an free, open source workbench for FreeCAD. Its features include
+G4cad is a free, open source workbench for FreeCAD. Its features include
 
 * Material management.  Users can define their own materials and set the predefined materials for different solids 
 * Adding simple CGS models to existing CAD models
