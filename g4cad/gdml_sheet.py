@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-
 Created on Wed Jul 18 18:09:41 2018
-
 @author: Hualin Xiao
 """
 
@@ -32,6 +30,10 @@ class GdmlSheet:
             return self.sp
         else:
             return None
+    def recompute(self):
+        if not self.sp:
+            self.sp.recompute()
+
 
     def append(self, *args, **kwargs):
         if not self.sp:
@@ -43,3 +45,4 @@ class GdmlSheet:
         self.row += 1
 
         return True
+

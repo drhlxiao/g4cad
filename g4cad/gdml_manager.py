@@ -28,7 +28,6 @@ class GdmlManager(object):
 
         self.created_materials = []
         self.created_elements = []
-        # self.mat_manager=MaterialManager()
 
         self.world_sphere_min_halfx = 100
         self.max_world_r = 0
@@ -168,8 +167,6 @@ class GdmlManager(object):
         sin_az = -np.dot(yaxis3, zaxis2)
         angle_z = math.atan2(sin_az, cos_az)
         angle_x = phi
-        # print angle_x,angle_y,angle_z
-
         return [angle_x, angle_y, angle_z]
 
     def addRotation(self, name, x, y, z, unit='deg'):
@@ -323,9 +320,7 @@ class GdmlManager(object):
     def removeAllMaterialsAndElements(self):
         for el in self.materials[2]:
             self.materials[2].remove(el)
-            print(el)
         self.materials[2] = []
-        print(self.materials)
 
     def resetAll(self):
         for elem in self.document[2]:
@@ -1044,7 +1039,6 @@ class GdmlManager(object):
                                 subelem, 'ref')
                         if subelem[0] == 'positionref':
                             pname = self.getAttributeValue(subelem, 'ref')
-                    # print name_phys_vol,pname
                     if name_phys_vol == name_vol and pname is not None:
                         return pname
         return None
@@ -1179,7 +1173,9 @@ class GdmlManager(object):
         return None
 
     def getSolidOfPhysVolume(self, phys_vol_name):
-        # Get logical volume name
+        """
+        get solid physical name
+        """
         logical_volume_name = self.getLogicalVolumeName(phys_vol_name)
         if logical_volume_name is not None:
             solid_name = None
@@ -1222,7 +1218,6 @@ class GdmlManager(object):
         mat_elem = self.getXmlElement(self.materials, "material", mat_name)
         if (mat_elem is not None):
             dens_elem = self.getXmlElement(mat_elem, "D")
-            # print dens_elem
             unit = eval(self.getAttributeValue(dens_elem, "unit", "g/cm3"))
             density = float(dens_elem[1]["value"]) * unit
             return density

@@ -19,11 +19,11 @@ import os.path
 import gdml_exporter
 import g4_materials
 
-import label_manager
+from property_manager import PropertyManager
 from material_database import MaterialDatabase
 from os.path import expanduser
-import material_ui
 import material_selection_window
+import material_manager_window
 import property_window
 #import SimulationRunManager
 boxID = 0
@@ -31,6 +31,8 @@ coneID = 0
 sphereID = 0
 cylID = 0
 __dir__ = os.path.dirname(__file__)
+
+
 
 
 # non icon comands
@@ -140,10 +142,10 @@ class MeshingToleranceManager:
             if ok and item:
                 for obj in sel:
                     label = obj.Label
-                    pLabel = label_manager.LabelManager()
-                    obj.Label = pLabel.updatePrecision(label, float(item))
-                    FreeCAD.Console.PrintMessage('set: ' + label +
-                                                 ' precision:' + item)
+                    PropertyManager.updatePropertyFloat(obj,'Tolerance', float(item))
+
+                    FreeCAD.Console.PrintMessage(label +
+                                                 '  tessellation tolerance set to:' + item)
 
             return
 
@@ -196,9 +198,8 @@ class MaterialSetter:
 
             if item != "":
                 for obj in sel:
+                    PropertyManager.updatePropertyString(obj, 'Material', item.strip())
                     label = obj.Label
-                    pLabel = label_manager.LabelManager()
-                    obj.Label = pLabel.updateMaterial(label, item.strip())
                     FreeCAD.Console.PrintMessage(label + ' material set to :' +
                                                  item + '\n')
             else:
@@ -224,16 +225,17 @@ class MeasurementTool:
             msgBox = QtGui.QMessageBox()
             msgBox.setText("Select one part!")
             ret = msgBox.exec_()
-            FreeCAD.Console.PrintWarning('select one part!')
+            FreeCAD.Console.PrintWarning('Multiple objects selected! Please only select one part!')
             return
         else:
             if hasattr(sel[0], "Shape"):
                 sol = sel[0].Shape
                 name = sel[0].Label
                 mass = 0
+                try:
 
-                boundBox = sol.BoundBox
-                measurements = {
+                    boundBox = sol.BoundBox
+                    measurements = {
                     "name": name,
                     "vol": sol.Volume,
                     "wx": sol.CenterOfMass[0],
@@ -253,12 +255,16 @@ class MeasurementTool:
                     "zmax": boundBox.ZMax,
                     'globalPlacement': sel[0].getGlobalPlacement()
                     # "mass": mass
-                }
-                property_window.MainWidget.run(measurements=measurements)
+                    }
+                    property_window.MainWidget.run(measurements=measurements)
+                except:
+                    FreeCAD.Console.PrintMessage(
+                        "Failed to measure the dimensions of the selected solid!")
+
 
             elif hasattr(sel[0], "Mesh") or hasattr(sel[0], "Point"):
                 FreeCAD.Console.PrintMessage(
-                    "Can not measure mesh object or point!")
+                    "Failed! Unsupported type!")
             else:
                 FreeCAD.Console.PrintMessage(
                     "Measurement not available for the object!")
@@ -369,13 +375,12 @@ class PhysicalVolumeManager:
                 num_sel = len(sel)
                 for i, obj in enumerate(sel):
                     label = obj.Label
-                    pLabel = label_manager.LabelManager()
                     sd_name = name.strip()
                     if num_sel > 1:
                         sd_name = '{}_{}'.format(name.strip(), i)
-                    obj.Label = pLabel.updatePhysicalVolume(label, sd_name)
+                    PropertyManager.updatePropertyString(obj, 'Physical_Volume', sd_name)
                     FreeCAD.Console.PrintMessage(
-                        'set {} as physical volume: {}\n'.format(
+                        'set {} physical volume name to : {}\n'.format(
                             label, sd_name))
             else:
                 FreeCAD.Console.PrintWarning('Invalid physical volume name\n')
@@ -409,8 +414,7 @@ class AddWorld:
         doc = FreeCAD.ActiveDocument
         doc.addObject("Part::Box", "__world__")
         world = doc.getObject("__world__")
-        pLabel = label_manager.LabelManager()
-        world.Label = pLabel.updateMaterial("World", "G4_AIR")
+        PropertyManager.updatePropertyString(world, 'Material','G4_Galactic')
         world.Length = '10000 mm'
         world.Height = '10000 mm'
         world.Width = '10000 mm'

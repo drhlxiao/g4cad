@@ -5,7 +5,7 @@ import FreeCAD
 import FreeCADGui
 
 
-class GDML(Workbench):
+class G4CAD(Workbench):
 
     MenuText = "g4cad"
     ToolTip = "g4cad - a Geant4 mass model creator"
@@ -131,7 +131,7 @@ static char *e989dec9477c492c8c341340245304b99otIH7s4cf3mqL2D[] = {
         return "Gui::PythonWorkbench"
 
 
-Gui.addWorkbench(GDML)
+Gui.addWorkbench(G4CAD)
 App.addImportType("Geometry Description Markup Language(*.gdml)",
                   "GdmlImporter")
 App.addExportType("Geometry Description Markup Language(*.gdml)",

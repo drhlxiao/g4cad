@@ -4,15 +4,8 @@ Created on May 16 11:12:45 2017
 @author: Hualin Xiao
 @email:  hualin.xiao@psi.ch
 
+FreeCAD G4CAD workbench
 
-FreeCAD g4cad workbench
-
-To do list:
-       optimize the geometry:
-      * increase precision for physical volumes
-      * merge parts with the same material to reduce overlaps
-      * FreeCAD plugin
-      * editing models with freecad
 """
 
 import os
@@ -22,9 +15,9 @@ import ImportGui
 import FreeCAD
 import FreeCADGui
 
-import label_manager
 import gdml_sheet
 from gdml_manager import GdmlManager
+from property_manager import PropertyManager
 
 
 def get_valid_filename(s):
@@ -36,10 +29,8 @@ class GdmlExporter:
 
     def __init__(self):
         self.min_volume = 0
-        self.precision = 0.1
         self.logfile = None
         self.shape_counter = 0
-        self.default_material = "G4_Al"
 
     def getPlacementBase(self, ob):
         try:
@@ -100,32 +91,12 @@ class GdmlExporter:
         gd.addPolyhedraSolid(solid_name, faces)
 
     def meshShape(self, ob, gd, solid_name):
-        pcs = self.getPrecision(ob)
-        # self.freecadPrint('%s precision:%f\n'%(ob.Label,pcs))
-        mesh = ob.Shape.tessellate(pcs)
+
+        toll=PropertyManager.getProperty(ob, 'Tolerance')
+
+        mesh = ob.Shape.tessellate(toll)
         self.meshing(mesh, gd, solid_name)
 
-    def getMaterial(self, label):
-        pLabel = label_manager.LabelManager()
-        pLabel.parse(label)
-        mat = pLabel.getMaterial()
-        if mat == "":
-            mat = self.default_material
-        return mat
-
-    def checkPhysicalVolume(self, label):
-        pLabel = label_manager.LabelManager()
-        pLabel.parse(label)
-        return pLabel.getPhysicalVolume()
-
-    def getPrecision(self, ob):
-        pLabel = label_manager.LabelManager()
-        pLabel.parse(ob.Label)
-        label_precision = pLabel.getPrecision()
-        if label_precision > 0:
-            return label_precision
-        else:
-            return self.precision
 
     def processObject(self, gd, ob, create_solid_only=False):
         world_volume = gd.createWorldVolume()
@@ -134,12 +105,10 @@ class GdmlExporter:
         position_name = '__pos__%d_' % self.shape_counter
         rotation_name = '__rot__%d_' % self.shape_counter
 
-        phys_name = '__phys_%d_' % self.shape_counter
-        physical_volume = self.checkPhysicalVolume(ob.Label)
-        if physical_volume:
-            phys_name = physical_volume
 
-        material_name = self.getMaterial(ob.Label)
+        phys_name = PropertyManager.getProperty(ob,'Physical_Volume', self.shape_counter)
+        material_name = PropertyManager.getProperty(ob, 'Material')
+
         self.shape_counter += 1
         displacement = None
         rot = None
@@ -148,7 +117,6 @@ class GdmlExporter:
         if ob.TypeId == "Part::Sphere":
             self.freecadPrint("Sphere Radius : " + str(ob.Radius))
             rmax = ob.Radius
-            # csg.write("sphere($fn = 0, "+fafs+", r = "+str(ob.Radius)+");\n")
             gd.addSphere(solid_name, 0, rmax, 0, 360, 0, 180, "mm", "deg")
             displacement, rot = self.checkPlacement(ob, 0, 0, 0)
 
@@ -166,9 +134,6 @@ class GdmlExporter:
             displacement, rot = self.checkPlacement(ob, 0, 0, -ob.Height / 2)
             gd.addTube(solid_name, 0, ob.Radius, ob.Height, 0, 360, "mm",
                        "deg")
-            # def addTube(self, name, rmin, rmax, z, startphi,
-            # deltaphi,lunit="cm",aunit="deg"):
-
         elif ob.TypeId == "Part::Cone":
             self.freecadPrint("cone : Height " + str(ob.Height) + " Radius1 " +
                               str(ob.Radius1) + " Radius2 " + str(ob.Radius2))
@@ -232,8 +197,6 @@ class GdmlExporter:
 
         return solid_name, volume_name, phys_name, material_name, pos_in_world, rot_in_world, boundBox
 
-    def setPrecision(value):
-        self.precision = value
 
     def start(self, exportlist, output, multi_files=True):
 
@@ -257,7 +220,7 @@ class GdmlExporter:
     def checkWorld(self, gd):
         for i in FreeCAD.ActiveDocument.Objects:
             if i.Name == "__world__" and i.TypeId == "Part::Box":
-                mat = self.getMaterial(i.Label)
+                mat = PropertyManager.getProperty(i, 'Material')
                 x = i.Length
                 y = i.Width
                 z = i.Height
@@ -267,7 +230,7 @@ class GdmlExporter:
                 gd.createWorldVolume(x, y, z, mat)
 
     def initLog(self, odir):
-        logfilename = '%s/cad2gdml.log' % odir
+        logfilename = '%s/g4cad.log' % odir
         self.logfile = open(logfilename, 'w')
 
     def exportToSingleFile(self, exportlist, fname):
@@ -288,13 +251,9 @@ class GdmlExporter:
 
             if i.Name == "__world__" and i.TypeId == "Part::Box":
                 continue
-
-            # volume=i.Shape.Volume
             ulabel = i.Label
             label = get_valid_filename(ulabel)
             name = i.Name
-            # print 'volume: %s -- %s: %f'%(label,name,volume)
-
             solid, vol, phys, mat, world_pos, world_rot, boundBox = self.processObject(
                 gdml, i)
             if mat not in materials:
@@ -322,14 +281,7 @@ class GdmlExporter:
         gdml.addSetup('world', '1.0', world_volume_name)
         gdml.writeFile(fname)
 
-    def getPhysVolumeName(self, n, ulabel):
-        phys_name = "_phys_%d" % n
-        # default phys volume name in the world.gdml
-        physical_volume = self.checkPhysicalVolume(ulabel)
-        if physical_volume:
-            phys_name = physical_volume
-            # extract from the label
-        return phys_name
+
 
     def exportSubShapes(self, exportlist, odir):
         self.freecadPrint('Converting parts to gdml files\n')
@@ -351,18 +303,18 @@ class GdmlExporter:
             if i.TypeId == 'Spreadsheet::Sheet':
                 continue
 
-            pLabel = label_manager.LabelManager()
+
             ulabel = i.Label
             ascii_label = get_valid_filename(ulabel)
-            fname = odir + "/%s_%d.gdml" % (
-                pLabel.getFilenameFromLabel(ascii_label), n)
+            fname=os.path.join(odir, "%s_%d.gdml" % (ascii_label, n))
 
             self.freecadPrint('%s -> %s \n' % (ascii_label, fname))
 
             if i.Name == "__world__" and i.TypeId == "Part::Box":
                 continue
 
-            phys_name = self.getPhysVolumeName(n, ulabel)
+            phys_name=PropertyManager.getProperty(i,'Physical_Volume',n)
+
             phys_name_list.append(phys_name)
 
             gdml_files.append(fname)
@@ -393,19 +345,20 @@ class GdmlExporter:
                 length_y = boundBox.YLength
                 length_z = boundBox.ZLength
 
-            sheet.append(pLabel.getLabel(ascii_label), os.path.basename(fname),
+            sheet.append((ascii_label), os.path.basename(fname),
                          sol, vol, phys, mat, center_x, center_y, center_z,
                          length_x, length_y, length_z)
 
             gdml.moveFrontLast()
             gdml.addSetup('world', '0.0', vol)
             gdml.writeFile(fname)
+            sheet.recompute()
         return gdml_files, phys_name_list, pos_world_list, rot_world_list
 
     def mergeGDML(self, file_list, phys_name_list, pos_world_list,
                   rot_world_list, odir):
         # write World.gdml
-        self.freecadPrint('wring world gdml\n')
+        self.freecadPrint('writing world gdml\n')
 
         if len(file_list) > 1:
             gdml = GdmlManager()
