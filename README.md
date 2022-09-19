@@ -22,7 +22,7 @@ We also developed a web version, which can be found at the link http://polar.psi
 ### Installation
 1) Download g4cad https://github.com/drhlxiao/g4cad/archive/refs/heads/main.zip
 2) Unzip the downloaded zip file
-3) find the folder g4cad in unzipped folder, copy it to FreeCAD workbench directory (~/.FreeCAD/Mod on Linux, and <FREECAD_INSTALLATION_PATH>/Mod on windows)
+3) find the folder g4cad in unzipped folder, copy it to FreeCAD workbench fold (<YOU_HOME>/.FreeCAD/Mod on Linux, and <FREECAD_INSTALLATION_PATH>/Mod on windows)
 
 
 
