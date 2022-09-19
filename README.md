@@ -80,7 +80,7 @@ For more details, please visit SE2S website: [https://www.se2s.ch/](https://www.
   <img src="./tests/g4cad.png"  style="width:800px;" title="g4cad Workbench">  
 
 - An example of the view of exported model in Geant4
-<img src="./tests/model_in_g4.png" width="400px;" > 
+<img src="./tests/model_in_g4.png" style="width:400px;" > 
 
 
 
