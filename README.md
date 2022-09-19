@@ -68,10 +68,12 @@ If you use g4cad in your work, please use the following citation,
 
 Maintainance and extended services related this software can be provide by [SE2S Ltd.](https://www.se2s.ch/).
 
-SE2S Ltd. is a Swiss based tech-SME with over 30 years of experience in radiation qualification, particle detection and data analysis. Its founders gathered profound expertise in radiation qualification and testing, electronics design, hardware and software development, and data evaluation for applications in aerospace. Founded in 2020, SE2S GmbH offers next generation services and products in the following three fields:
-- radiation detection systems
-- Radiation analysis software and services
+SE2S Ltd. is a Swiss based tech-SME with over 30 years of experience in radiation qualification, particle detection and data analysis. Its founders gathered profound expertise in radiation qualification and testing, electronics design, hardware and software development, and data evaluation for applications in aerospace.SE2S GmbH offers next generation services and products in the following three fields:
+- Radiation detection systems
+- Radiation detector development
+- Radiation analysis and services
 - Radiation qualification and testing services
+
 For more details, please visit SE2S website: [https://www.se2s.ch/](https://www.se2s.ch/)
 
 ## Screenshots
