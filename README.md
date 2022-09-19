@@ -14,19 +14,18 @@ G4cad is a free, open source workbench for FreeCAD. Its features include
 
 We also developed a web version, which can be found at the link http://polar.psi.ch/cadmc/
 
-### Requirements
+## Requirements
  Tested with FreeCAD 0.19, on both Ubuntu and Windows，  should also work with Freecad v0.16, v0.17 and v0.18
 
 
 
-### Installation
+## Installation
 1) Download g4cad https://github.com/drhlxiao/g4cad/archive/refs/heads/main.zip
 2) Unzip the downloaded zip file
 3) find the folder g4cad in unzipped folder, copy it to FreeCAD workbench fold (<YOU_HOME>/.FreeCAD/Mod on Linux, and <FREECAD_INSTALLATION_PATH>/Mod on windows)
 
 
-
-### Typical Workflow
+## Typical Workflow
 1) Activate the workbench "g4cad" in FreeCAD (view->Workbench->g4cad)
 2) Open the step file to be converted 
 3) click the icon "add world volume" in the toolbar to add a world volume 
@@ -50,7 +49,7 @@ G4VPhysicalVolume *world= parser.GetWorldVolume();
  ```
 
 
-### Cite this work
+## Cite this work
 If you use g4cad in your work, please use the following citation,
 ```sh
 @software{g4cad,
@@ -75,7 +74,7 @@ SE2S Ltd. is a Swiss based tech-SME with over 30 years of experience in radiatio
 - Radiation qualification and testing services
 For more details, please visit SE2S website: [https://www.se2s.ch/](https://www.se2s.ch/)
 
-### Screenshots
+## Screenshots
  * g4cad Workbench
 ![g4cad workbench](./tests/g4cad.png)
  *  view of the exported model in geant4
