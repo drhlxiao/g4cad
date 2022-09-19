@@ -75,14 +75,14 @@ SE2S Ltd. is a Swiss based tech-SME with over 30 years of experience in radiatio
 For more details, please visit SE2S website: [https://www.se2s.ch/](https://www.se2s.ch/)
 
 ## Screenshots
-<div style="display:flex;  flex-direction: row;">
+<div style="display:flex;  flex-direction: row;"><div>
  <figure>
   <img src="./tests/g4cad.png"  style="width:400px;" title="g4cad Workbench">  
   <figcaption>view of the exported model in geant4</figcaption>
-</figure>
+ </figure></div><div>
 <figure>
 <img src="./tests/model_in_g4.png" width="400" > 
   <figcaption>An example of the view of exported model in Geant4</figcaption>
-</figure>
+ </figure></div>
 </div>
 
