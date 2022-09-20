@@ -9,7 +9,7 @@ Physicists usually spend most of the time developing the mass model when develop
 * set the tessellation tolerance for each individual solid
 * convert models to GDML files
 
-G4CAD also provides other tools useful for creating mass models and converting CAD files to GDML, like measuring tools, tools to find /remove small solids. 
+G4CAD also provides other tools useful for creating mass models and converting CAD files to GDML, like measuring tools, tools to find/remove small solids. 
 
 
 ## Installation
@@ -21,7 +21,7 @@ Make sure you have already installed FreeCAD 0.19 or 0.20 (should also work with
    mkdir -p ~/.FreeCAD/Mod
    cp -r g4cad/g4cad ~/.FreeCAD/Mod
  ```
- * To install it on Windows, please follow the steps as below:
+ * To install it on Windows, please follow the steps as follows:
    *  Download the source code https://github.com/drhlxiao/g4cad/archive/refs/heads/main.zip
    *  unzip file downloaded file
    *  copy g4cad/g4cad  to   <FREECAD_INSTALLATION_PATH>/Mod. 
