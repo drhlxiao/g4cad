@@ -347,7 +347,6 @@ class GdmlManager(object):
         return self.world_volume_name
 
     def addBox(self, name, dx, dy, dz, lunit="cm"):
-        print("Box", name, dx, dy, dz)
         self.solids[2].append([
             'box', {
                 'name': name,
@@ -770,9 +769,7 @@ class GdmlManager(object):
         }, []], ['solidref', {
             'ref': solid
         }, []]]
-        # print daughters
         for child in daughters:
-            # print child
             subsubels = [['volumeref', {
                 'ref': child[0]
             }, []], ['positionref', {
@@ -824,7 +821,6 @@ class GdmlManager(object):
         def writeElement(elem, offset):
             offset = offset + '  '
             gdml_file.write(offset + '<%s' % (elem[0]))
-            print(elem[1].keys())
             ordered_keys = []
             try:
                 ordered_keys = np.sort(elem[1].keys())
@@ -953,11 +949,8 @@ class GdmlManager(object):
                                 )
                     if name_phys_vol == name:
                         phys_list_to_remove += [elem]
-            # print phys_list_to_remove
             for phys_vol in phys_list_to_remove:
                 vol[2].remove(phys_vol)
-            # print "vol2",vol[2]
-        # print list_to_remove
         for vol in list_to_remove:
             self.structure[2].remove(vol)
 
@@ -989,11 +982,8 @@ class GdmlManager(object):
                         if log_vol not in list_to_remove:
                             list_to_remove += [log_vol]
 
-            # print phys_list_to_remove
             for phys_vol in phys_list_to_remove:
                 vol[2].remove(phys_vol)
-            # print "vol2",vol[2]
-        # print list_to_remove
         for vol in list_to_remove:
             if vol in self.structure[2]:
                 self.structure[2].remove(vol)
@@ -1081,7 +1071,6 @@ class GdmlManager(object):
                                                            0.)) * unit
                                 pos = np.array([x, y, z])
 
-                    # print name_phys_vol,pname
                         if name_phys_vol == name and pos is not None:
                             return pos
 
@@ -1106,7 +1095,6 @@ class GdmlManager(object):
                                 subelem, 'ref')
                         if subelem[0] == 'rotationref':
                             rname = self.getAttributeValue(subelem, 'ref')
-                    # print name_phys_vol,pname
                     if name_phys_vol == name and rname is not None:
                         name_rot = rname
         if name_rot is not None:
@@ -1126,7 +1114,6 @@ class GdmlManager(object):
                                 subelem, 'ref')
                         if subelem[0] == 'rotationref':
                             rname = self.getAttributeValue(subelem, 'ref')
-                    # print name_phys_vol,pname
                     if name_phys_vol == name and rname is not None:
                         name_rot = rname
         if name_rot is not None:

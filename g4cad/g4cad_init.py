@@ -13,29 +13,42 @@ import FreeCAD
 import FreeCADGui
 import ImportGui
 import gdml_importer
-
-import os.path
-
 import gdml_exporter
 import g4_materials
 
 from property_manager import PropertyManager
 from material_database import MaterialDatabase
-from os.path import expanduser
 import material_selection_window
 import material_manager_window
 import property_window
-#import SimulationRunManager
 boxID = 0
 coneID = 0
 sphereID = 0
 cylID = 0
 __dir__ = os.path.dirname(__file__)
 
+class WorkerSignal(QtCore.QObject):
+    error = QtCore.Signal(str)
+
+class Worker(QtCore.QRunnable):
+    def __init__(self, fn, *args, **kwargs):
+        super(Worker, self).__init__()
+        self.fn = fn
+        self.args = args
+        self.kwargs = kwargs
+        self.signal = WorkerSignal()
+
+    def run(self):
+        '''
+        Initialise the runner function with passed args, kwargs.
+        '''
+        try:
+            self.fn(*self.args, **self.kwargs)
+        except Exception as e:
+            self.signal.error.emit(str(e))
 
 
 
-# non icon comands
 class ImportFile:
 
     def GetResources(self):
@@ -49,7 +62,7 @@ class ImportFile:
         return True
 
     def Activated(self):
-        fname = QtGui.QFileDialog.getOpenFileName(directory=expanduser('~'))[0]
+        fname = QtGui.QFileDialog.getOpenFileName(directory=os.path.expanduser('~'))[0]
         if fname:
             # ImportGui.insert(fname,"Unnamed")
             gdml_importer.open(fname)
@@ -57,30 +70,26 @@ class ImportFile:
             FreeCAD.Console.PrintWarning('invalid filename')
 
 
-# icon comands
-class Export:
+class ExportFile:
 
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/export.png',
             'MenuText': 'Export',
-            'ToolTip': 'Export solids to gdml files'
+            'ToolTip': 'Exporting solids to gdml files'
         }
 
     def IsActive(self):
-        # return FreeCADGui.Selection.countObjectsOfType('Part::Feature') > 0
         return True
 
     def Activated(self):
-        FreeCAD.Console.PrintMessage('Export objects to gdml files')
-        #sel = FreeCADGui.Selection.getSelection()
+        FreeCAD.Console.PrintMessage('Exporting objects to gdml files')
         objects = FreeCAD.ActiveDocument.Objects
 
         sel = []
         for x in objects:
             if x.ViewObject.Visibility and x.isDerivedFrom("Part::Feature"):
                 if all([p.ViewObject.Visibility for p in x.InListRecursive]):
-                    # parents are also visible
                     sel.append(x)
 
         if not sel:
@@ -93,13 +102,17 @@ class Export:
         FreeCAD.Console.PrintMessage('Number of objects to be exported: %d' %
                                      len(sel))
         odir = QtGui.QFileDialog.getExistingDirectory(
-            caption="Set output directory", directory=expanduser('~'))
-        FreeCAD.Console.PrintMessage('exporting...')
-        if odir:
-            ex = gdml_exporter.GdmlExporter()
-            ex.start(sel, odir)
-        else:
+            caption="Set output directory")
+        FreeCAD.Console.PrintMessage('exporting solids...')
+        if not odir:
             FreeCAD.Console.PrintMessage('Invalid output directory')
+            return 
+        ex = gdml_exporter.GdmlExporter()
+        pool = QtCore.QThreadPool()
+        worker = Worker(ex.start, sel, odir)
+        error_handler = lambda err: FreeCAD.Console.PrintError('An error occurred : %s'%err)
+        worker.signal.error.connect(error_handler)
+        pool.start(worker)
 
 
 class MeshingToleranceManager:
@@ -532,7 +545,7 @@ class AddCone:
 
 
 if FreeCAD.GuiUp:
-    FreeCAD.Gui.addCommand('export', Export())
+    FreeCAD.Gui.addCommand('export', ExportFile())
     FreeCAD.Gui.addCommand('import', ImportFile())
     FreeCAD.Gui.addCommand('add_world', AddWorld())
 
@@ -549,4 +562,3 @@ if FreeCAD.GuiUp:
     FreeCAD.Gui.addCommand('filter_parts', PartFilter())
     FreeCAD.Gui.addCommand('show_measurements', MeasurementTool())
     FreeCAD.Gui.addCommand('manage_materials', MaterialManager())
-    #FreeCAD.Gui.addCommand('run_sim', RunSim())
