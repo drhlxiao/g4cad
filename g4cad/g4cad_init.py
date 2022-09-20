@@ -131,36 +131,34 @@ class MeshingToleranceManager:
         sel = FreeCADGui.Selection.getSelection()
         if not sel:
             msgBox = QtGui.QMessageBox()
-            msgBox.setText("No Active Object!")
+            msgBox.setText("No object selected!")
             ret = msgBox.exec_()
-            FreeCAD.Console.PrintWarning('No Active object!')
+            FreeCAD.Console.PrintWarning('No object selected!')
             return
 
+
+        items = [
+            '0.01', '0.1', '0.2', '0.5', '1', '2', '3', '4', '5', '10',
+            '20', '50', '100', '200', '500', '1000'
+        ]
+        caption = ''
+        if len(sel) == 1:
+            caption = 'Tessellation tolerance for %s' % sel[0].Label
         else:
+            caption = 'Tessellation  tolerance for the selected %d parts' % len(
+                sel)
 
-            items = [
-                '0.01', '0.1', '0.2', '0.5', '1', '2', '3', '4', '5', '10',
-                '20', '50', '100', '200', '500', '1000'
-            ]
-            caption = ''
-            if len(sel) == 1:
-                caption = 'Tessellation tolerance for %s' % sel[0].Label
-            else:
-                caption = 'Tessellation  tolerance for the selected %d parts' % len(
-                    sel)
+        item, ok = QtGui.QInputDialog.getItem(None, caption,
+                                              "Tessellation tolerance:",
+                                              items, 0, False)
+        if ok and item:
+            for obj in sel:
+                label = obj.Label
+                PropertyManager.updatePropertyFloat(obj,'Tolerance', float(item))
 
-            item, ok = QtGui.QInputDialog.getItem(None, caption,
-                                                  "Tessellation tolerance:",
-                                                  items, 0, False)
-            if ok and item:
-                for obj in sel:
-                    label = obj.Label
-                    PropertyManager.updatePropertyFloat(obj,'Tolerance', float(item))
+                FreeCAD.Console.PrintMessage(label +
+                                             '  tessellation tolerance set to:' + item)
 
-                    FreeCAD.Console.PrintMessage(label +
-                                                 '  tessellation tolerance set to:' + item)
-
-            return
 
 
 class MaterialManager:

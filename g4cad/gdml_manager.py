@@ -58,10 +58,10 @@ class GdmlManager(object):
 
     def processMaterial(self, mat):
         if mat in g4_materials.materials:
-            self.freecadPrint('Geant4 default material: ' + mat)
+            self.freecadPrint('Default material: ' + mat)
         else:
-            self.freecadPrint('Loading material' + mat +
-                              ' information from database')
+            self.freecadPrint('Loading material ' + mat +
+                              ' from database')
             self.addDatabaseMaterial(mat)
 
     def adddMaterial(self, name, density, componds, density_unit="g/cm3"):
@@ -672,15 +672,12 @@ class GdmlManager(object):
             self.structure[2] = new_structure
 
     def addVolume(self, volume, solid, material, daughters):
-        #print(volume, solid, material, daughters)
         subels = [['materialref', {
             'ref': material
         }, []], ['solidref', {
             'ref': solid
         }, []]]
-        # print daughters
         for child in daughters:
-            # print child
             subsubels = [['volumeref', {
                 'ref': child[0]
             }, []], ['positionref', {

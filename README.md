@@ -27,6 +27,7 @@ Make sure you have already installed FreeCAD 0.19 or 0.20 (should also work with
    *  copy g4cad/g4cad  to   <FREECAD_INSTALLATION_PATH>/Mod. 
      You should have user_materials.json in the folder <FREECAD_INSTALLATION_PATH>/Mod/g4cad/ 
 
+More information about installing  FreeCAD workbenchs can be found at  https://wiki.freecadweb.org/Installing_more_workbenches
 
 ## Typical Workflow
 <ol>
