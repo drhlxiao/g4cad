@@ -7,8 +7,8 @@ import FreeCADGui
 
 class G4CAD(Workbench):
 
-    MenuText = "g4cad"
-    ToolTip = "g4cad - a Geant4 mass model creator"
+    MenuText = "G4CAD"
+    ToolTip = "G4CAD - a Geant4 mass model creator"
     Icon = """
 /* XPM */
 static char *e989dec9477c492c8c341340245304b99otIH7s4cf3mqL2D[] = {
@@ -105,20 +105,20 @@ static char *e989dec9477c492c8c341340245304b99otIH7s4cf3mqL2D[] = {
 };
 """
     def Initialize(self):
-        import plugin_init
+        import g4cad_init
         self.list = [
             "import", "export", "add_world", "add_box", "add_sphere",
             "add_cylinder", "add_cone", "set_material", "set_tolerance",
             "set_physical_volume", "hide_parts", "filter_parts",
             "show_measurements", "manage_materials"
         ]
-        self.appendToolbar("g4cad", self.list)
-        self.appendMenu("g4cad", self.list)
+        self.appendToolbar("G4CAD", self.list)
+        self.appendMenu("G4CAD", self.list)
 
     def Activated(self):
         if not (FreeCAD.ActiveDocument):
             FreeCAD.newDocument()
-        FreeCAD.Console.PrintMessage('g4cad workbench loaded.. \n')
+        FreeCAD.Console.PrintMessage('G4CAD workbench loaded.. \n')
         return
 
     def Deactivated(self):
