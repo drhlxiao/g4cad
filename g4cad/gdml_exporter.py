@@ -358,7 +358,7 @@ class GdmlExporter:
     def mergeGDML(self, file_list, phys_name_list, pos_world_list,
                   rot_world_list, odir):
         # write World.gdml
-        self.freecadPrint('writing world gdml\n')
+        self.freecadPrint('Writing world gdml...\n')
 
         if len(file_list) > 1:
             gdml = GdmlManager()

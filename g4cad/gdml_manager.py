@@ -1205,7 +1205,7 @@ class GdmlManager(object):
     def setMaterialOfPhysVolume(self, phys_vol_name, material_name):
         logical_volume_name = self.getLogicalVolumeName(phys_vol_name)
 
-        if (logical_volume_name is not None):
+        if logical_volume_name is not None:
             volElem = self.getXmlElement(self.structure, 'volume',
                                          logical_volume_name)
             for subelem in volElem[2]:
@@ -1216,7 +1216,7 @@ class GdmlManager(object):
 
     def getMaterialDensity(self, mat_name):
         mat_elem = self.getXmlElement(self.materials, "material", mat_name)
-        if (mat_elem is not None):
+        if mat_elem is not None:
             dens_elem = self.getXmlElement(mat_elem, "D")
             unit = eval(self.getAttributeValue(dens_elem, "unit", "g/cm3"))
             density = float(dens_elem[1]["value"]) * unit

@@ -31,7 +31,7 @@ Make sure you have already installed FreeCAD 0.19 or 0.20 (should also work with
 ## Typical Workflow
 <ol>
 <li> Open FreeCAD </li>
- <li> Activate the workbench "G4CAD" in FreeCAD (view->Workbench->g4cad)</li>
+ <li> Activate the workbench "G4CAD" in FreeCAD (View->Workbench->G4CAD)</li>
  <li> Import a CAD file </li>
  <li> Click the icon "add world volume" in the G4CAD toolbar to add a world volume </li>
  <li> Select a solid or multiple solids, set  material(s) 
@@ -68,7 +68,7 @@ If you use G4CAD in your work, please use the following citation,
 ```sh
 @software{g4cad,
   author       = {Hualin Xiao, Wojtek Hajdas},
-  title        = {{g4cad - A freecad workbench for converting CAD 
+  title        = {{G4CAD - A FreeCAD Workbench for converting CAD 
                    files to gdml}},
   month        = sep,
   year         = 2022,
@@ -86,6 +86,7 @@ SE2S GmbH is a Swiss-based high-tech company with over 30 years of experience in
 * Radiation detection systems
 * Radiation analysis software and services
 * Radiation qualification and testing services
+
 For more info about SE2S, please visit:  [https://se2s.ch](https://se2s.ch)
 
  ## Screenshot

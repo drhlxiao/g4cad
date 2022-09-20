@@ -214,15 +214,10 @@ def parsePhysVol(root, ptr):
     volref = ptr.find("volumeref")
     name = getRef(volref)
     solid = getVolSolid(root, name)
-    # if ((pos is not None) and (rot is not None)) :
     createSolid(solid, volref, pos, rot)
-    # else:
-    #    show_message("not to create solid")
-
     parseVolume(root, name)
 
 
-# ParseVolume
 def parseVolume(root, name):
     show_message("ParseVolume : " + name)
     vol = root.find("structure/volume[@name='%s']" % name)

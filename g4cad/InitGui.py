@@ -1,9 +1,8 @@
-__title__ = "FreeCAD geant4 mass model creator"
+__title__ = "FreeCAD geant4 mass model creator G4CAD"
 __author__ = "Hualin Xiao (hualin.xiao@psi.ch) "
 __url__ = ""
 import FreeCAD
 import FreeCADGui
-
 
 class G4CAD(Workbench):
 
