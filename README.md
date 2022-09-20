@@ -68,7 +68,5 @@ If you use g4cad in your work, please use the following citation,
 
  ### Screenshots
  * g4cad Workbench
-![g4cad workbench](./tests/g4cad.png)
- *  view of the exported model in geant4
-![converted model in g4](./tests/model_in_g4.png  )
+![g4cad workbench](./screenshots/g4cad.png)
 

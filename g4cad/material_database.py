@@ -106,12 +106,8 @@ class MaterialDatabase(object):
 if __name__ == "__main__":
     # test database
     db = MaterialDatabase()
-    # print 'available material:'
-    # print db.getMaterialList()
-    # print db.getMaterial('PMMA')
     matlist = [
         "HPM1801", "BKG7G18", "PCB_FR4", "Al2O3", "Ti6Al4V", "F2G12",
         "Alu5A06", "PMMA"
     ]
-    # print yaml.dump(db.getMaterialListbyNames(matlist))
     db.edit()
