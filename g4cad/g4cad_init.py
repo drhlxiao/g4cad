@@ -309,7 +309,7 @@ class PartVisibilityManager:
     def Activated(self):
 
         value, ok = QtGui.QInputDialog.getDouble(
-            None, "Set the volume limit to be hidden", "Volume (mm3):")
+            None, "Hide parts with volume less than: ", "Volume (mm3):")
         if not ok:
             return
         doc = FreeCAD.ActiveDocument
@@ -454,7 +454,7 @@ class AddBox:
         return {
             'Pixmap': __dir__ + '/icons/cube.svg',
             'MenuText': 'Add a box',
-            'ToolTip': 'add box volume'
+            'ToolTip': 'Add a box'
         }
 
     def IsActive(self):
@@ -481,7 +481,7 @@ class AddCylinder:
         return {
             'Pixmap': __dir__ + '/icons/cylinder.svg',
             'MenuText': 'Add a cylinder',
-            'ToolTip': 'add a cylinder volume '
+            'ToolTip': 'Add a cylinder'
         }
 
     def IsActive(self):
@@ -506,7 +506,7 @@ class AddSphere:
         return {
             'Pixmap': __dir__ + '/icons/sphere.svg',
             'MenuText': 'Add a sphere',
-            'ToolTip': 'add a sphere volume '
+            'ToolTip': 'Add a sphere'
         }
 
     def IsActive(self):
@@ -530,7 +530,7 @@ class AddCone:
         return {
             'Pixmap': __dir__ + '/icons/cone.svg',
             'MenuText': 'Add a cone',
-            'ToolTip': 'add a cone volume '
+            'ToolTip': 'Add a cone'
         }
 
     def IsActive(self):

@@ -119,7 +119,7 @@ static char *e989dec9477c492c8c341340245304b99otIH7s4cf3mqL2D[] = {
         if not (FreeCAD.ActiveDocument):
             FreeCAD.newDocument()
         FreeCAD.Console.PrintMessage('G4CAD workbench loaded..   \n')
-        FreeCAD.Console.PrintMessage('G4CAD documentation can be found at: https://github.com/drhlxiao/g4cad \n')
+        FreeCAD.Console.PrintMessage('G4CAD tutorial can be found at: https://github.com/drhlxiao/g4cad \n')
         return
 
     def Deactivated(self):
