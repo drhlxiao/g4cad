@@ -28,7 +28,9 @@ cylID = 0
 __dir__ = os.path.dirname(__file__)
 
 class WorkerSignal(QtCore.QObject):
-    error = QtCore.Signal(str)
+    error= QtCore.Signal(str)
+    info= QtCore.Signal(str)
+
 
 class Worker(QtCore.QRunnable):
     def __init__(self, fn, *args, **kwargs):
@@ -36,8 +38,17 @@ class Worker(QtCore.QRunnable):
         self.fn = fn
         self.args = args
         self.kwargs = kwargs
-        self.signal = WorkerSignal()
+        self.signal=WorkerSignal()
 
+        self.error_handler = lambda err: FreeCAD.Console.PrintError('An error occurred : %s\n'%err)
+        self.info_handler = lambda msg: FreeCAD.Console.PrintMessage(msg)
+        self.signal.error.connect(self.error_handler)
+        self.signal.info.connect(self.info_handler)
+    def info(self,msg):
+        self.signal.info.emit(msg)
+    def error(self,msg):
+        self.signal.error.emit(msg)
+        
     def run(self):
         '''
         Initialise the runner function with passed args, kwargs.
@@ -46,7 +57,7 @@ class Worker(QtCore.QRunnable):
             self.fn(*self.args, **self.kwargs)
         except Exception as e:
             self.signal.error.emit(str(e))
-
+        self.signal.info.emit('Done!')
 
 
 class ImportFile:
@@ -71,7 +82,6 @@ class ImportFile:
 
 
 class ExportFile:
-
     def GetResources(self):
         return {
             'Pixmap': __dir__ + '/icons/export.png',
@@ -83,7 +93,6 @@ class ExportFile:
         return True
 
     def Activated(self):
-        FreeCAD.Console.PrintMessage('Exporting objects to gdml files')
         objects = FreeCAD.ActiveDocument.Objects
 
         sel = []
@@ -99,19 +108,18 @@ class ExportFile:
             FreeCAD.Console.PrintWarning('No Active object!')
             return
 
-        FreeCAD.Console.PrintMessage('Number of objects to be exported: %d' %
+        FreeCAD.Console.PrintMessage('Number of objects selected: %d\n' %
                                      len(sel))
         odir = QtGui.QFileDialog.getExistingDirectory(
             caption="Set output directory")
-        FreeCAD.Console.PrintMessage('exporting solids...')
         if not odir:
-            FreeCAD.Console.PrintMessage('Invalid output directory')
+            FreeCAD.Console.PrintError('Invalid output directory\n')
             return 
+        FreeCAD.Console.PrintMessage('Exporting objects to GDML files...\n')
         ex = gdml_exporter.GdmlExporter()
         pool = QtCore.QThreadPool()
         worker = Worker(ex.start, sel, odir)
-        error_handler = lambda err: FreeCAD.Console.PrintError('An error occurred : %s'%err)
-        worker.signal.error.connect(error_handler)
+        ex.setWorker(worker)
         pool.start(worker)
 
 
@@ -121,7 +129,7 @@ class MeshingToleranceManager:
         return {
             'Pixmap': __dir__ + '/icons/mesh.png',
             'MenuText': 'Set tessellation  tolerance ',
-            'ToolTip': 'set tessellation tolerance'
+            'ToolTip': 'Set tessellation tolerance'
         }
 
     def IsActive(self):
@@ -183,7 +191,7 @@ class MaterialSetter:
         return {
             'Pixmap': __dir__ + '/icons/material.png',
             'MenuText': 'Set material',
-            'ToolTip': 'set material'
+            'ToolTip': 'Set material'
         }
 
     def IsActive(self):
@@ -543,20 +551,20 @@ class AddCone:
 
 
 if FreeCAD.GuiUp:
-    FreeCAD.Gui.addCommand('export', ExportFile())
-    FreeCAD.Gui.addCommand('import', ImportFile())
-    FreeCAD.Gui.addCommand('add_world', AddWorld())
+    FreeCAD.Gui.addCommand('ExportGDML', ExportFile())
+    FreeCAD.Gui.addCommand('ImportGDML', ImportFile())
+    FreeCAD.Gui.addCommand('CreateWorld', AddWorld())
 
-    FreeCAD.Gui.addCommand('add_box', AddBox())
-    FreeCAD.Gui.addCommand('add_cylinder', AddCylinder())
-    FreeCAD.Gui.addCommand('add_sphere', AddSphere())
-    FreeCAD.Gui.addCommand('add_cone', AddCone())
+    FreeCAD.Gui.addCommand('CreateBox', AddBox())
+    FreeCAD.Gui.addCommand('CreateCylinder', AddCylinder())
+    FreeCAD.Gui.addCommand('CreateSphere', AddSphere())
+    FreeCAD.Gui.addCommand('CreateCone', AddCone())
 
-    FreeCAD.Gui.addCommand('set_material', MaterialSetter())
-    FreeCAD.Gui.addCommand('set_tolerance', MeshingToleranceManager())
-    FreeCAD.Gui.addCommand('set_physical_volume', PhysicalVolumeManager())
+    FreeCAD.Gui.addCommand('SetMaterial', MaterialSetter())
+    FreeCAD.Gui.addCommand('SetTolerance', MeshingToleranceManager())
+    FreeCAD.Gui.addCommand('SetPhysicalVolume', PhysicalVolumeManager())
 
-    FreeCAD.Gui.addCommand('hide_parts', PartVisibilityManager())
-    FreeCAD.Gui.addCommand('filter_parts', PartFilter())
-    FreeCAD.Gui.addCommand('show_measurements', MeasurementTool())
-    FreeCAD.Gui.addCommand('manage_materials', MaterialManager())
+    FreeCAD.Gui.addCommand('HideParts', PartVisibilityManager())
+    FreeCAD.Gui.addCommand('FilterParts', PartFilter())
+    FreeCAD.Gui.addCommand('MeasureDim', MeasurementTool())
+    FreeCAD.Gui.addCommand('ManageMaterials', MaterialManager())

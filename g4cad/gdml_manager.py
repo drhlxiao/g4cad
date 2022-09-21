@@ -57,11 +57,7 @@ class GdmlManager(object):
         self.addMaterial("Galaxy", "H", 1, 1.0, 1e-25, unit="g/cm3")
 
     def processMaterial(self, mat):
-        if mat in g4_materials.materials:
-            self.freecadPrint('Default material: ' + mat)
-        else:
-            self.freecadPrint('Loading material ' + mat +
-                              ' from database')
+        if mat not in g4_materials.materials:
             self.addDatabaseMaterial(mat)
 
     def adddMaterial(self, name, density, componds, density_unit="g/cm3"):

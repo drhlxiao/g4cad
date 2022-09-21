@@ -1,6 +1,5 @@
 # -*- coding: utf8 -*-
 # author: Hualin Xiao
-# parts of the code taken from  https://github.com/KeithSloan/FreeCAD_GDML
 
 import sys
 import os
@@ -19,16 +18,8 @@ def show_message(msg):
         print(str(msg) + '\n')
 
 
-if FreeCAD.GuiUp:
-    import FreeCADGui
-    gui = True
-else:
-    if verbose:
-        print("FreeCAD Gui not present.")
-    gui = False
-
 if open.__module__ == '__builtin__':
-    pythonopen = open  # to distinguish python built-in open function from the one declared here
+    pythonopen = open  
 
 
 def open(filename):
@@ -197,6 +188,7 @@ def getVolSolid(root, name):
 
 
 def parsePhysVol(root, ptr):
+    # parts of the code taken from  https://github.com/KeithSloan/FreeCAD_GDML
     show_message("ParsePhyVol")
     pos = ptr.find("positionref")
     if pos is not None:
@@ -230,7 +222,6 @@ def processGDML(filename):
     FreeCAD.Console.PrintMessage('Import GDML file : ' + filename + '\n')
     if verbose:
         show_message('ImportGDML Version 0.1')
-
     import xml.etree.ElementTree as ET
     tree = ET.parse(filename)
     root = tree.getroot()
@@ -244,6 +235,4 @@ def processGDML(filename):
         parseVolume(root, ref)
 
     doc.recompute()
-    if verbose:
-        show_message('End ImportGDML')
-    FreeCAD.Console.PrintMessage('End processing GDML file\n')
+    FreeCAD.Console.PrintMessage('GDML imported\n')

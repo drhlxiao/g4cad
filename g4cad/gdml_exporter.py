@@ -31,6 +31,9 @@ class GdmlExporter:
         self.min_volume = 0
         self.logfile = None
         self.shape_counter = 0
+        self.worker = None
+    def setWorker(self,worker):
+        self.worker=worker
 
     def getPlacementBase(self, ob):
         try:
@@ -115,41 +118,41 @@ class GdmlExporter:
         is_CSG = True
 
         if ob.TypeId == "Part::Sphere":
-            self.freecadPrint("Sphere Radius : " + str(ob.Radius))
+            #self.info("Sphere Radius : " + str(ob.Radius))
             rmax = ob.Radius
             gd.addSphere(solid_name, 0, rmax, 0, 360, 0, 180, "mm", "deg")
             displacement, rot = self.checkPlacement(ob, 0, 0, 0)
 
         elif ob.TypeId == "Part::Box":
-            self.freecadPrint("cube : (" + str(ob.Length) + "," +
-                              str(ob.Width) + "," + str(ob.Height) + ")")
+            #self.info("cube : (" + str(ob.Length) + "," +
+            #                  str(ob.Width) + "," + str(ob.Height) + ")")
             displacement, rot = self.checkPlacement(ob, -ob.Length / 2,
                                                     -ob.Width / 2,
                                                     -ob.Height / 2)
             gd.addBox(solid_name, ob.Length, ob.Width, ob.Height, "mm")
 
         elif ob.TypeId == "Part::Cylinder":
-            self.freecadPrint("cylinder : Height " + str(ob.Height) +
-                              " Radius " + str(ob.Radius))
+            #self.info("cylinder : Height " + str(ob.Height) +
+            #                  " Radius " + str(ob.Radius))
             displacement, rot = self.checkPlacement(ob, 0, 0, -ob.Height / 2)
             gd.addTube(solid_name, 0, ob.Radius, ob.Height, 0, 360, "mm",
                        "deg")
         elif ob.TypeId == "Part::Cone":
-            self.freecadPrint("cone : Height " + str(ob.Height) + " Radius1 " +
-                              str(ob.Radius1) + " Radius2 " + str(ob.Radius2))
+            #self.info("cone : Height " + str(ob.Height) + " Radius1 " +
+            #                  str(ob.Radius1) + " Radius2 " + str(ob.Radius2))
             displacement, rot = self.checkPlacement(ob, 0, 0, -ob.Height / 2)
             gd.addCone(solid_name, ob.Height, 0, 0, ob.Radius1, ob.Radius2, 0,
                        360, "mm", "deg")
 
         elif ob.TypeId == "Part::Torus":
-            self.freecadPrint("Torus")
+            #self.info("Torus")
             if ob.Angle3 == 360.00:
                 displacement, rot = self.checkPlacement(ob, 0, 0, 0)
                 gd.addTorus(solid_name, ob.Radius1, 0, ob.Radius2, 0, 360)
             else:  # Cannot convert to rotate extrude so best effort is polyhedron
                 self.meshShape(ob, gd, solid_name)
         elif ob.isDerivedFrom('Part::Feature'):
-            self.freecadPrint("Part::Feature")
+            #self.info("Part::Feature")
             displacement, rot = self.checkPlacement(ob, 0, 0, 0)
             is_CSG = False
             self.meshShape(ob, gd, solid_name)
@@ -199,12 +202,11 @@ class GdmlExporter:
 
 
     def start(self, exportlist, output, multi_files=True):
-
         logdir = output
         if not multi_files:
             logdir = os.path.dirname(output)
         self.initLog(logdir)
-        self.freecadPrint('Writing gdml...\n')
+        self.info('Writing gdml...\n')
 
         if multi_files:
             odir = os.path.normpath(output) + '/gdml'
@@ -215,7 +217,7 @@ class GdmlExporter:
             self.mergeGDML(file_list, phys_name_list, pos_list, rot_list, odir)
         else:
             self.exportToSingleFile(exportlist, output)
-        self.freecadPrint('done!\n')
+        self.info('done!\n')
 
     def checkWorld(self, gd):
         for i in FreeCAD.ActiveDocument.Objects:
@@ -224,9 +226,9 @@ class GdmlExporter:
                 x = i.Length
                 y = i.Width
                 z = i.Height
-                self.freecadPrint("creating world...")
-                self.freecadPrint("size:(%f,%f,%f)" % (x, y, z))
-                self.freecadPrint("material:" + mat)
+                self.info("creating world...")
+                self.info("size:(%f,%f,%f)" % (x, y, z))
+                self.info("material:" + mat)
                 gd.createWorldVolume(x, y, z, mat)
 
     def initLog(self, odir):
@@ -237,7 +239,7 @@ class GdmlExporter:
         gdml = GdmlManager()
         self.checkWorld(gdml)
         world_volume_name = gdml.createWorldVolume()
-        self.freecadPrint("world:" + world_volume_name)
+        self.info("world:" + world_volume_name)
         sheet = gdml_sheet.GdmlSheet()
         sheet.createNewSheet("log")
         sheet.append('No.', 'Part', 'solid', 'logical volume',
@@ -252,6 +254,7 @@ class GdmlExporter:
             if i.Name == "__world__" and i.TypeId == "Part::Box":
                 continue
             ulabel = i.Label
+            self.info("Exporting %s \n..."%ulabel)
             label = get_valid_filename(ulabel)
             name = i.Name
             solid, vol, phys, mat, world_pos, world_rot, boundBox = self.processObject(
@@ -284,7 +287,7 @@ class GdmlExporter:
 
 
     def exportSubShapes(self, exportlist, odir):
-        self.freecadPrint('Converting parts to gdml files\n')
+        self.info('Converting parts to gdml files\n')
         gdml_files = []
         phys_name_list = []
         pos_world_list = []
@@ -308,7 +311,7 @@ class GdmlExporter:
             ascii_label = get_valid_filename(ulabel)
             fname=os.path.join(odir, "%s_%d.gdml" % (ascii_label, n))
 
-            self.freecadPrint('%s -> %s \n' % (ascii_label, fname))
+            self.info('Exporting %s -> %s \n' % (ascii_label, fname))
 
             if i.Name == "__world__" and i.TypeId == "Part::Box":
                 continue
@@ -358,7 +361,7 @@ class GdmlExporter:
     def mergeGDML(self, file_list, phys_name_list, pos_world_list,
                   rot_world_list, odir):
         # write World.gdml
-        self.freecadPrint('Writing world gdml...\n')
+        self.info('Writing World volume...\n')
 
         if len(file_list) > 1:
             gdml = GdmlManager()
@@ -376,9 +379,11 @@ class GdmlExporter:
     def setMinimalVolume(self, minvol):
         self.min_volume = minvol
 
-    def freecadPrint(self, msg):
+    def info(self, msg):
         msg += "\n"
-        FreeCAD.Console.PrintMessage(msg)
+        if self.worker:
+            self.worker.info(msg)
+
         if self.logfile:
             self.logfile.write(msg)
 
