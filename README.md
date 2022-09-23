@@ -64,6 +64,7 @@ world = parser.GetWorldVolume();
  ```
 
 
+
 ## Cite this work
 If you use G4CAD in your work, please use the following citation,
 ```sh
@@ -79,8 +80,12 @@ If you use G4CAD in your work, please use the following citation,
   url          = {https://doi.org/10.5281/zenodo.7085915}
 }
 ```
-## Extended services
+## Contact
+* If you found issues, please create an github issue on this repo
+* If you want to contribute code, please create a pull request 
+*  send an email to  dr.hualinxiao at gmail.com if you have anything else
 
+## Extended services
 Extended services related to this tool can be provided by SE2S.
 
 SE2S GmbH is a Swiss-based high-tech company with over 30 years of experience in radiation qualification, particle detection, and data analysis. Its founders gathered profound expertise in radiation qualification and testing, electronics design, hardware and software development, and data evaluation for applications in aerospace.  SE2S GmbH offers next-generation services and products in the following fields:
@@ -94,3 +99,6 @@ For more info about SE2S, please visit:  [https://se2s.ch](https://se2s.ch)
  * G4CAD Workbench
 ![g4cad workbench](./screenshots/g4cad.png)
 
+
+## web-based CAD to GDML converter
+We also developed a web-based CAD to GDML converter. URL: [http://polar.psi.ch/cadmc/converter/](http://polar.psi.ch/cadmc/converter/)
