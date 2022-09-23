@@ -83,7 +83,7 @@ If you use G4CAD in your work, please use the following citation,
 ## Contact
 * If you found issues, please create an github issue on this repo
 * If you want to contribute code, please create a pull request 
-*  send an email to  dr.hualinxiao at gmail.com if you have anything else
+*  send an email to  dr.hualinxiao@gmail.com if you have anything else
 
 ## Extended services
 Extended services related to this tool can be provided by SE2S.
