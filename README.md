@@ -80,8 +80,8 @@ If you use G4CAD in your work, please use the following citation,
   url          = {https://doi.org/10.5281/zenodo.7085915}
 }
 ```
-## Contact
-* If you found issues, please create an github issue on this repo
+## Reporting issues, contributing code, contacting me
+* If you find issues, please create an github issue on this repo
 * If you want to contribute code, please create a pull request 
 *  send an email to  dr.hualinxiao@gmail.com if you have anything else
 
