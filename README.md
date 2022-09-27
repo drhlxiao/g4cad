@@ -1,7 +1,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7085915.svg)](https://doi.org/10.5281/zenodo.7085915)
 # G4CAD   - A FreeCAD workbench for converting CAD files to GDML 
 
-Physicists usually spend most of the time developing the mass model when developing a Geant4-based Monte Carlo simulation package. For simple geometries, it is relatively easy to describe them using CGS models. However, this becomes almost impossible for complex geometries. G4CAD is a free, open-source FreeCAD workbench developed by SE2S founders.  With the workbench and FreeCAD, users can 
+Physicists usually spend most of the time developing the mass model when developing a Geant4-based Monte Carlo simulation package. For simple geometries, it is relatively easy to describe them using CGS models. However, this becomes almost impossible for complex geometries. G4CAD is a free, open-source FreeCAD workbench.  With the workbench and FreeCAD, users can 
 
 * import and edit CAD files
 * set materials and material management. Users can define their own materials and set the predefined materials for different solids
