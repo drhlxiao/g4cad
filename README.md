@@ -86,7 +86,7 @@ If you use G4CAD in your work, please use the following citation,
 *  send an email to  dr.hualinxiao@gmail.com if you have anything else
 
 ## Extended services
-Extended services related to this tool can be provided by SE2S.
+Extended services related to this tool can be provided by **SE2S Ltd.**.
 
 SE2S GmbH is a Swiss-based high-tech company with over 30 years of experience in radiation qualification, particle detection, and data analysis. Its founders gathered profound expertise in radiation qualification and testing, electronics design, hardware and software development, and data evaluation for applications in aerospace.  SE2S GmbH offers next-generation services and products in the following fields:
 * Radiation detection systems
