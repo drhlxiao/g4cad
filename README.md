@@ -86,7 +86,7 @@ For more info about SE2S, please visit:  [https://se2s.ch](https://se2s.ch)
 If you use G4CAD in your work, please use the following citation,
 ```sh
 @software{g4cad,
-  author       = {Hualin Xiao, Wojtek Hajdas},
+  author       = {Hualin Xiao},
   title        = {{G4CAD - A FreeCAD Workbench for converting CAD 
                    files to gdml}},
   month        = sep,
