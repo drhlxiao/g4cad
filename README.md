@@ -27,7 +27,7 @@ Make sure you have already installed FreeCAD 0.19 or 0.20 (should also work with
    *  copy g4cad/g4cad  to   <FREECAD_INSTALLATION_PATH>/Mod. 
      You should have user_materials.json in the folder <FREECAD_INSTALLATION_PATH>/Mod/g4cad/ 
 
-More information about installing  FreeCAD workbenchs can be found at  https://wiki.freecadweb.org/Installing_more_workbenches
+More information about installing  FreeCAD workbenches can be found at  https://wiki.freecadweb.org/Installing_more_workbenches
 
 ## Typical Workflow
 <ol>
@@ -98,9 +98,9 @@ If you use G4CAD in your work, please use the following citation,
 }
 ```
 ## Reporting issues, contributing code, contacting me
-* If you find issues, please create an github issue on this repo
+* If you find issues, please create a GitHub issue on this repo
 * If you want to contribute code, please create a pull request 
-*  send an email to  dr.hualinxiao@gmail.com if you have anything else
+*  send an email to  hualin.xiao(at)se2s.ch if you have anything else
 
-## web-based CAD to GDML converter
+## Web-based CAD to GDML converter
 We also developed a web-based CAD to GDML converter. URL: [http://polar.psi.ch/cadmc/converter/](http://polar.psi.ch/cadmc/converter/)
