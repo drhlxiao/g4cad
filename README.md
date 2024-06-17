@@ -20,6 +20,7 @@ Make sure you have already installed FreeCAD 0.19 or 0.20 (should also work with
    git clone --depth 1 https://github.com/drhlxiao/g4cad
    mkdir -p ~/.FreeCAD/Mod
    cp -r g4cad/g4cad ~/.FreeCAD/Mod
+    cp -r g4cad/g4cad ~/.local/share/.FreeCAD/Mod  if the version > 0.20
  ```
  * To install it on Windows, please follow the steps as follows:
    *  Download the source code https://github.com/drhlxiao/g4cad/archive/refs/heads/main.zip
