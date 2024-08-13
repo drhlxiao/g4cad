@@ -13,6 +13,10 @@ G4CAD also provides other tools useful for creating mass models and converting C
 
 
 ## Installation
+
+FreeCAD installation packages can be downloaded at: 
+https://github.com/FreeCAD/FreeCAD/releases
+
 Make sure you have already installed FreeCAD 0.19 or 0.20 (should also work with v0.17 and v0.18).
 * To install it on Linux, execute the following commands:
 
